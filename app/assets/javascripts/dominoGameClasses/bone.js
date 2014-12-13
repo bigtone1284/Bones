@@ -1,6 +1,6 @@
 function Bone() {
-	this.northSuite: "";
-	this.southSuite: "";
+	this.northSuite = null;
+	this.southSuite = null;
 }
 
 Bone.prototype.create = function(n,s) {
