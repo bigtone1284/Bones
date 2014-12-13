@@ -1,7 +1,7 @@
 describe("Bone", function() {
   var bone;
 
-  beforeEach(function(){
+  beforeEach(function() {
     bone = new Bone();
   });
 
@@ -35,7 +35,7 @@ describe("Bone", function() {
 
   describe("#double", function() {
     
-    it("should return true if the piece is a double.", function() {
+    it("should return true if the piece is a double", function() {
       bone.create(6,6);
       expect(bone.double()).toBe(true);
     });
@@ -49,7 +49,7 @@ describe("Bone", function() {
 
   describe("#totalPips", function() {
 
-    it("should return the total number of pips on the bone.", function() {
+    it("should return the total number of pips on the bone", function() {
       bone.create(4,2);
       expect(bone.totalPips()).toBe(6);
     });

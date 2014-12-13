@@ -15,4 +15,7 @@
 //= require turbolinks
 //= require_tree .
 //= dominoGameClasses/bone.js
+//= dominoGameClasses/boneYard.js
+//= dominoGameClasses/helpers.js
+//= dominoGameClasses/hand.js
 
