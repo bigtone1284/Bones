@@ -7,12 +7,12 @@ describe("Bone", function() {
 
   describe("northSuite, southSuite", function() {
 
-    it("should be initialized with a north suite of \'\'", function() {
-      expect.(bone.northSuite).toBe("");
+    it("should be initialized with a north suite of null", function() {
+      expect(bone.northSuite).toBe(null);
     });
 
-    it("should be initialized with a south suite of \'\'", function() {
-      expect.(bone.sorthSuite).toBe("");
+    it("should be initialized with a south suite of null", function() {
+      expect(bone.southSuite).toBe(null);
     });
 
   });
