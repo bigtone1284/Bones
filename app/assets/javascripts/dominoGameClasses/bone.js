@@ -16,3 +16,11 @@ Bone.prototype.totalPips = function() {
 	return this.northSuite + this.southSuite;
 };
 
+Bone.prototype.largestSuite = function() {
+	if (this.northSuite >= this.southSuite) {
+		return this.northSuite;
+	} else {
+		return this.southSuite;
+	};
+};
+
