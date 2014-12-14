@@ -122,7 +122,21 @@ describe("Hand", function() {
 
   });
 
+  describe("#playBone", function() {
+    it("should play a bone chosen from the players hand", function() {
+      var bone = hand.bones[3];
+      expect(hand.bones.indexOf(bone) > -1).toBe(true);
+      var playBone = hand.playBone(3);
+      expect(bone).toBe(playBone);
+      expect(hand.bones.indexOf(bone) > -1).toBe(false);
+    });
 
+    it("should reduce the number of bones in the hand by one", function() {
+      expect(hand.bones.length).toBe(7);
+      var playBone = hand.playBone(1);
+      expect(hand.bones.length).toBe(6);
+    });
 
+  });
 
 });

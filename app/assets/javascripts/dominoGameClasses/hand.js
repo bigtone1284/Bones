@@ -63,4 +63,8 @@ Hand.prototype.heaviestBone = function() {
 	return heaviest;
 };
 
+Hand.prototype.playBone = function(boneIndex) {
+	return this.bones.splice(boneIndex, 1)[0];
+};
+
 
