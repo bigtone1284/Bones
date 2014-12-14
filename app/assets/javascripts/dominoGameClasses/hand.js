@@ -28,4 +28,39 @@ Hand.prototype.isEmpty = function() {
 	return this.bones.length === 0;
 };
 
+Hand.prototype.hasDoubles = function() {
+	var doubles = false;
+	for (var i = 0; i < this.bones.length; i++) {
+		if (this.bones[i].double()) {
+			doubles = true;
+		}
+	}
+	return doubles;
+};
+
+Hand.prototype.heaviestBone = function() {
+	var heaviest = new Bone;
+	if (this.hasDoubles()) {
+		for (var i = 0; i < this.bones.length; i++) {
+			if (this.bones[i].double()) {
+				if (this.bones[i].largestSuite() >= heaviest.largestSuite()) {
+					heaviest = this.bones[i];
+				}
+			}
+		}
+	} else {
+		for (var i = 0; i < this.bones.length; i++) {
+			if (this.bones[i].totalPips() > heaviest.totalPips()) {
+				heaviest = this.bones[i];
+			}
+			if (this.bones[i].totalPips() === heaviest.totalPips()) {
+				if (this.bones[i].largestSuite() > heaviest.largestSuite()) {
+					heaviest = this.bones[i];
+				}
+			}
+		}
+	}
+	return heaviest;
+};
+
 

@@ -56,6 +56,23 @@ describe("Bone", function() {
 
   });
 
-  
+  describe("#largestSuite", function() {
+
+    it("should return northSuite if larger than southSuite", function() {
+      bone.create(4,2);
+      expect(bone.largestSuite()).toBe(4);
+    });
+
+    it("should return southSuite if larger than northSuite", function() {
+      bone.create(1,2);
+      expect(bone.largestSuite()).toBe(2);
+    });
+
+    it("should return northSuite if double", function() {
+      bone.create(5,5);
+      expect(bone.largestSuite()).toBe(5);
+    });
+
+  });
 
 });
