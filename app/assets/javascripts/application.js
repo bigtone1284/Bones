@@ -18,4 +18,5 @@
 //= dominoGameClasses/boneYard.js
 //= dominoGameClasses/helpers.js
 //= dominoGameClasses/hand.js
+//= dominoGameClasses/train.js
 
