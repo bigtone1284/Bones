@@ -19,4 +19,5 @@
 //= dominoGameClasses/helpers.js
 //= dominoGameClasses/hand.js
 //= dominoGameClasses/train.js
+//= dominoGameClasses/game.js
 
