@@ -20,4 +20,59 @@
 //= dominoGameClasses/hand.js
 //= dominoGameClasses/train.js
 //= dominoGameClasses/game.js
+$(function() {
+  console.log("Loaded, bro.");
+  $('#start').on('click', function() {
+    this.remove();
+    game.start();
+    makeDom();
+  });
+});
+
+
+var makeDom = function() {
+  $('body').remove();
+  makeHand1();
+  makeHand2();
+  makeBoneYard();
+  makeTrain();
+};
+
+var makeHand1 = function() {
+	var hand1 = $('<div>').addClass('hand 1').text('Player 1');
+	game.hand1.bones.forEach(function(bone) {
+		var dom = $('<div>').addClass('domino').text(bone.northSuite + ' | ' + bone.southSuite);
+		hand1.append(dom);
+	});
+	$('body').append(hand1);
+};
+
+var makeHand2 = function() {
+	var hand2 = $('<div>').addClass('hand 2').text('Player 2');
+	game.hand2.bones.forEach(function(bone) {
+		var dom = $('<div>').addClass('domino').text(bone.northSuite + ' | ' + bone.southSuite);
+		hand2.append(dom);
+	});
+	$('body').append(hand2);
+};
+
+var makeBoneYard = function() {
+	var boneYard = $('<div>').addClass('boneyard').text('Boneyard');
+	game.boneYard.bones.forEach(function(bone) {
+		var dom = $('<div>').addClass('domino').text(bone.northSuite + ' | ' + bone.southSuite);
+		boneYard.append(dom);
+	});
+	$('body').append(boneYard);
+};
+
+var makeTrain = function() {
+	var train = $('<div>').addClass('train').text('Train');
+	game.train.gameTrain.forEach(function(bone) {
+		var dom = $('<div>').addClass('domino').text(bone);
+		train.append(dom);
+	});
+	$('body').append(train);
+}
+
+
 

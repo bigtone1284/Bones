@@ -13,3 +13,26 @@
  *= require_tree .
  *= require_self
  */
+
+.domino {
+	border: thin solid black;
+	padding: 0.1em;
+	font-size: 2em;
+	width: 2em;
+	text-align: center;
+}
+
+.hand {
+	margin: 1em;
+	float: left;
+}
+
+.boneyard {
+	margin: 1em;
+	float: left;
+}
+
+.train {
+	margin: 1em;
+	float: left;
+}
