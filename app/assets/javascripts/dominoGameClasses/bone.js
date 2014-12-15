@@ -1,6 +1,7 @@
 function Bone() {
 	this.northSuite = null;
 	this.southSuite = null;
+	this.orientation = 0;
 }
 
 Bone.prototype.create = function(n,s) {
@@ -23,4 +24,6 @@ Bone.prototype.largestSuite = function() {
 		return this.southSuite;
 	};
 };
+
+
 
