@@ -63,6 +63,10 @@ Hand.prototype.heaviestBone = function() {
 	return heaviest;
 };
 
+Hand.prototype.peek = function(boneIndex) {
+	return this.bones[boneIndex]
+};
+
 Hand.prototype.playBone = function(boneIndex) {
 	return this.bones.splice(boneIndex, 1)[0];
 };
