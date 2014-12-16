@@ -29,6 +29,8 @@ $(function() {
   });
 });
 
+//figure otu how to change class of things as you change them 
+//add domino class info to each piece (each suite value).
 
 var makeDom = function() {
   $('body').remove();
@@ -66,6 +68,8 @@ var makeBoneYard = function() {
 };
 
 var makeTrain = function() {
+// this train doesnt have to look ike the array on the page.  
+
 	var train = $('<div>').addClass('train').text('Train');
 	game.train.gameTrain.forEach(function(bone) {
 		var dom = $('<div>').addClass('domino').text(bone);
