@@ -20,7 +20,7 @@ var game = {
 		} else {
 			hand = this.hand2;
 		}
-		
+
 		if (move === "pass") {
 			if (this.boneYard.bones.length > 0) {
 				hand.addBone(this.boneYard);
@@ -46,7 +46,5 @@ var game = {
 	switchPlayer: function() {
 		this.currentPlayer *= -1;
 	}
-
-
 
 };

@@ -20,6 +20,7 @@
 //= dominoGameClasses/hand.js
 //= dominoGameClasses/train.js
 //= dominoGameClasses/game.js
+//= callbacks/callback.js
 $(function() {
   console.log("Loaded, bro.");
   var currentDomino = 0;
