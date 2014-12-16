@@ -16,6 +16,3 @@ Bone.prototype.largestSuite = function() {
 	return this.northSuite >= this.southSuite ?
 		this.northSuite : this.southSuite;
 };
-
-
-
