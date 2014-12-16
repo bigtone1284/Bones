@@ -1,13 +1,8 @@
-function Bone() {
-	this.northSuite = null;
-	this.southSuite = null;
-	this.orientation = 0;
-}
-
-Bone.prototype.create = function(n,s) {
+function Bone(n,s) {
 	this.northSuite = n;
 	this.southSuite = s;
-};
+	this.orientation = 0;
+}
 
 Bone.prototype.double = function() {
 	return this.northSuite === this.southSuite;
@@ -18,11 +13,8 @@ Bone.prototype.totalPips = function() {
 };
 
 Bone.prototype.largestSuite = function() {
-	if (this.northSuite >= this.southSuite) {
-		return this.northSuite;
-	} else {
-		return this.southSuite;
-	};
+	return this.northSuite >= this.southSuite ?
+		this.northSuite : this.southSuite;
 };
 
 

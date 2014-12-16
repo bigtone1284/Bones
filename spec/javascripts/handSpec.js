@@ -29,8 +29,7 @@ describe("Hand", function() {
   describe("#totalPips", function() {
 
   	it("should return the number of pips in a player's hand", function() {
-  		var bone = new Bone;
-  		bone.create(6,5);
+  		var bone = new Bone(6,5);
   		hand.bones = [];
   		boneyard.bones = [bone];
   		hand.addBone(boneyard);
@@ -61,16 +60,14 @@ describe("Hand", function() {
   describe("#hasDoubles", function() {
 
   	it("should return true if a player has a double in their hand", function() {
-  		var bone = new Bone;
-  		bone.create(6,6);
+  		var bone = new Bone(6,6);
   		boneyard.bones = [bone];
   		hand.addBone(boneyard);
   		expect(hand.hasDoubles()).toBe(true);
   	});
 
   	it("should return false if a player has no doubles", function() {
-  		var bone = new Bone;
-  		bone.create(6,5);
+  		var bone = new Bone(6,5);
   		boneyard.bones = [bone];
   		hand.bones = [];
   		hand.addBone(boneyard);
@@ -82,12 +79,9 @@ describe("Hand", function() {
   describe("#heaviestBone", function() {
 
   	it("should return the double with the highest value", function() {
-  		var bone1 = new Bone;
-  		bone1.create(6,5);
-  		var bone2 = new Bone;
-  		bone2.create(4,4);
-  		var bone3 = new Bone;
-  		bone3.create(3,3);
+  		var bone1 = new Bone(6,5);
+  		var bone2 = new Bone(4,4);
+  		var bone3 = new Bone(3,3);
   		boneyard.bones = [bone1, bone2, bone3];
   		hand.bones = [];
   		hand.setHand(boneyard, 3);
@@ -95,12 +89,9 @@ describe("Hand", function() {
   	});
 
   	it("should return the bone with the highest value if the hand has no doubles", function() {
-  		var bone1 = new Bone;
-  		bone1.create(6,5);
-  		var bone2 = new Bone;
-  		bone2.create(4,2);
-  		var bone3 = new Bone;
-  		bone3.create(3,1);
+  		var bone1 = new Bone(6,5);
+  		var bone2 = new Bone(4,2);
+  		var bone3 = new Bone(3,1);
   		boneyard.bones = [bone1, bone2, bone3];
   		hand.bones = [];
   		hand.setHand(boneyard, 3);
@@ -108,12 +99,9 @@ describe("Hand", function() {
   	});
 
   	it("should return 0,0 if it's the only double", function() {
-  		var bone1 = new Bone;
-  		bone1.create(1,0);
-  		var bone2 = new Bone;
-  		bone2.create(4,2);
-  		var bone3 = new Bone;
-  		bone3.create(0,0);
+  		var bone1 = new Bone(1,0);
+  		var bone2 = new Bone(4,2);
+  		var bone3 = new Bone(0,0);
   		boneyard.bones = [bone1, bone2, bone3];
   		hand.bones = [];
   		hand.setHand(boneyard, 3);
@@ -138,5 +126,15 @@ describe("Hand", function() {
     });
 
   });
+
+  describe("#peek", function() {
+    it("should show a bone at a given index", function() {
+      var bone = new Bone(7,7);
+      hand.bones.push(bone);
+      expect(hand.peek(7)).toBe(bone);
+    });
+  });
+
+
 
 });

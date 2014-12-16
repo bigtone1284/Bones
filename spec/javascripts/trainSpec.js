@@ -20,10 +20,8 @@ describe("Train", function() {
   	});
 
   	it("should accept a legal move on the left", function() {
-  		var boneStart = new Bone;
-  		boneStart.create(6,2);
-  		var bone1 = new Bone;
-  		bone1.create(6,5);
+  		var boneStart = new Bone(6,2);
+  		var bone1 = new Bone(6,5);
   		train.playBone(boneStart);
   		train.playBone(bone1, "left");
   		expect(train.gameTrain[1]).toBe(6);
@@ -31,10 +29,8 @@ describe("Train", function() {
   	});
 
   	it("should accept a legal move on the right", function() {
-  		var boneStart = new Bone;
-  		boneStart.create(6,2);
-  		var bone1 = new Bone;
-  		bone1.create(2,5);
+  		var boneStart = new Bone(6,2);
+  		var bone1 = new Bone(2,5);
   		train.playBone(boneStart);
   		train.playBone(bone1, "right");
   		expect(train.gameTrain[2]).toBe(2);
@@ -42,10 +38,8 @@ describe("Train", function() {
   	});
 
   	it("should do nothing if an illegal move is played", function() {
-  		var boneStart = new Bone;
-  		boneStart.create(6,2);
-  		var bone1 = new Bone;
-  		bone1.create(5,3);
+  		var boneStart = new Bone(6,2);
+  		var bone1 = new Bone(5,3);
   		train.playBone(boneStart);
   		train.playBone(bone1, "right");
   		expect(train.gameTrain[0]).toBe(6);
@@ -56,28 +50,22 @@ describe("Train", function() {
   describe("#legalMove", function() {
 
   	it("should return false if the move is illegal", function() {
-  		var boneStart = new Bone;
-  		bone.create(6,2);
-  		var bone1 = new Bone;
-  		bone1.create(3,5);
+  		var boneStart = new Bone(6,2);
+  		var bone1 = new Bone(3,5);
   		train.playBone(boneStart, "right");
   		expect(train.legalMove(bone1)).toBe(false);
   	});
 
   	it("should return true if the bone can be played to the train front", function() {
-  		var boneStart = new Bone;
-  		boneStart.create(6,2);
-  		var bone1 = new Bone;
-  		bone1.create(6,5);
+  		var boneStart = new Bone(6,2);
+  		var bone1 = new Bone(6,5);
   		train.playBone(boneStart);
   		expect(train.legalMove(bone1, "left")).toBe(true);
   	});
 
   	it("should return true if the bone can be played to the train back", function() {
-  		var boneStart = new Bone;
-  		boneStart.create(6,2);
-  		var bone1 = new Bone;
-  		bone1.create(2,5);
+  		var boneStart = new Bone(6,2);
+  		var bone1 = new Bone(2,5);
   		train.playBone(boneStart);
   		expect(train.legalMove(bone1, "right")).toBe(true);
   	});

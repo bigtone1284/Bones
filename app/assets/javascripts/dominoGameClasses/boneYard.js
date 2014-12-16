@@ -7,9 +7,7 @@ BoneYard.prototype.fillBoneYard = function() {
 	var suites = [0, 1, 2, 3, 4, 5, 6];
 	for (var i = 0; i < suites.length; i++) {
 		for (var j = i; j < suites.length; j++) {
-			bone = new Bone;
-			bone.create(i,j);
-			this.bones.push(bone);
+			this.bones.push(new Bone(i,j));
 		}
 	}
 };

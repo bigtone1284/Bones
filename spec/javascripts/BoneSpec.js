@@ -2,32 +2,16 @@ describe("Bone", function() {
   var bone;
 
   beforeEach(function() {
-    bone = new Bone();
+    bone = new Bone(6,4);
   });
 
   describe("northSuite, southSuite", function() {
 
-    it("should be initialized with a north suite of null", function() {
-      expect(bone.northSuite).toBe(null);
-    });
-
-    it("should be initialized with a south suite of null", function() {
-      expect(bone.southSuite).toBe(null);
-    });
-
-  });
-
-  describe("#create", function() {
-
-    beforeEach(function() {
-      bone.create(6,4);
-    });
-
-    it("should give northSuite a value", function (){
+    it("should be initialized with a north suite of n", function() {
       expect(bone.northSuite).toBe(6);
     });
 
-    it("should give sorthSuite a value", function (){
+    it("should be initialized with a south suite of s", function() {
       expect(bone.southSuite).toBe(4);
     });
 
@@ -36,12 +20,11 @@ describe("Bone", function() {
   describe("#double", function() {
     
     it("should return true if the piece is a double", function() {
-      bone.create(6,6);
-      expect(bone.double()).toBe(true);
+      var bone2 = new Bone(6,6)
+      expect(bone2.double()).toBe(true);
     });
 
     it("should return false if the piece is not a double", function() {
-      bone.create(6,4);
       expect(bone.double()).toBe(false);
     });
     
@@ -50,8 +33,7 @@ describe("Bone", function() {
   describe("#totalPips", function() {
 
     it("should return the total number of pips on the bone", function() {
-      bone.create(4,2);
-      expect(bone.totalPips()).toBe(6);
+      expect(bone.totalPips()).toBe(10);
     });
 
   });
@@ -59,18 +41,17 @@ describe("Bone", function() {
   describe("#largestSuite", function() {
 
     it("should return northSuite if larger than southSuite", function() {
-      bone.create(4,2);
-      expect(bone.largestSuite()).toBe(4);
+      expect(bone.largestSuite()).toBe(6);
     });
 
     it("should return southSuite if larger than northSuite", function() {
-      bone.create(1,2);
-      expect(bone.largestSuite()).toBe(2);
+      var bone3 = new Bone(1,2);
+      expect(bone3.largestSuite()).toBe(2);
     });
 
     it("should return northSuite if double", function() {
-      bone.create(5,5);
-      expect(bone.largestSuite()).toBe(5);
+      var bone5 = new Bone(5,5);
+      expect(bone5.largestSuite()).toBe(5);
     });
 
   });
