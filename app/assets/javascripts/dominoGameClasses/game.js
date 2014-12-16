@@ -21,8 +21,8 @@ var game = {
 			hand = this.hand2;
 		}
 
-		if (move === "pass" && this.boneYard.length) {
-			hand.addBone(this.BoneYard);
+		if (move === "pass" && this.boneYard.length > 0) {
+			hand.addBone(this.boneYard);
 			this.switchPlayer();
 		} else {
 			var x = this.train.playBone(hand.peek(bone), move);

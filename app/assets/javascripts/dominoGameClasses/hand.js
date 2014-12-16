@@ -30,16 +30,14 @@ Hand.prototype.isEmpty = function() {
 
 Hand.prototype.hasDoubles = function() {
 	var doubles = false;
-	for (var i = 0; i < this.bones.length; i++) {
-		if (this.bones[i].double()) {
-			doubles = true;
-		}
-	}
+	this.bones.forEach(function(bone){
+		if (bone.double()) {doubles = true}
+	})
 	return doubles;
 };
 
 Hand.prototype.heaviestBone = function() {
-	var heaviest = new Bone;
+	var heaviest = new Bone(-1, 0);
 	if (this.hasDoubles()) {
 		for (var i = 0; i < this.bones.length; i++) {
 			if (this.bones[i].double()) {
