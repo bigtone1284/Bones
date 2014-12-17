@@ -34,6 +34,7 @@ var game = {
 				return this.switchPlayer();
 			}
 		}
+		return false;
 	},
 	checkWin: function() {
 		if (this.hand1.bones.length === 0 || this.hand2.bones.length === 0) {

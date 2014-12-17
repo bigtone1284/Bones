@@ -1,7 +1,6 @@
 function Bone(n,s) {
 	this.northSuite = n;
 	this.southSuite = s;
-	this.orientation = 0;
 }
 
 Bone.prototype.double = function() {

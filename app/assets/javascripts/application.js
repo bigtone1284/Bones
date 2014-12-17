@@ -23,49 +23,36 @@
 //= callbacks/callback.js
 $(function() {
   console.log("Loaded, bro.");
-  var currentDomino = 0;
   $('#start').on('click', function() {
     this.remove();
     game.start();
+    currentDomino = null;
     makeDom();
   });
   $('#container').on('click', '#boneyard', function() {
   	game.play("pass");
+  	$('.gutter').toggleClass('active');
   	makeDom();
   });
-  $('#player1').on('click', '.domino' , function() {
-  	currentDomino = $(this);
-  });
-  $('#player2').on('click', '.domino', function() {
-  	currentDomino = $(this);
-  });
+
+  // $('#player1.active').on('click', '.domino' , setCurrentDomino);
+
+  $('.gutter').on('click', '.domino', setCurrentDomino);
 
   $('#gameboard').on('click', '#train', function() {
-  	if (currentDomino) {
-  		if (game.train.gameTrain.length === 0) {
-  			game.play('right', Number(currentDomino.attr("bone")));
-  			game.checkWin();
-  			makeDom();
-  		}
-  	}
+  	makePlay('right');
   });
 
   $('#gameboard').on('click', '#left', function() {
-  	if (currentDomino) {
-  		game.play('left', Number(currentDomino.attr("bone")));
-  		game.checkWin();
-  		makeDom();
-  	}
+  	makePlay('left');
   });
 
   $('#gameboard').on('click', '#right', function() {
-  	game.play('right', Number(currentDomino.attr("bone")));
-  	game.checkWin();
-  	makeDom();
+  	makePlay('right');
   });
 
 });
-
+var currentDomino;
 //figure otu how to change class of things as you change them 
 //add domino class info to each piece (each suite value).
 
