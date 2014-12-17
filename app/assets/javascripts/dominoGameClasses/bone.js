@@ -15,3 +15,7 @@ Bone.prototype.largestSuite = function() {
 	return this.northSuite >= this.southSuite ?
 		this.northSuite : this.southSuite;
 };
+
+Bone.prototype.reOrient = function() { 
+	this.northSuite = this.southSuite + ((this.southSuite = this.northSuite) - this.northSuite);
+};

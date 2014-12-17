@@ -2,44 +2,58 @@ function Train() {
 	this.gameTrain = [];
 }
 
-Train.prototype.playBone = function(bone, side) {
-	if (this.gameTrain.length === 0) {
-		return this.gameTrain.push(bone.northSuite, bone.southSuite);
-	} else {
-		if (this.legalMove(bone, side)) {
-			
-			if (side === "left") {
-				if (bone.northSuite === this.gameTrain[0]) {
-					return this.gameTrain.unshift(bone.southSuite, bone.northSuite);
-				} else {
-					return this.gameTrain.unshift(bone.northSuite, bone.southSuite);
-				}
-			}
-
-			if (side === "right") {
-				if (bone.northSuite === this.gameTrain[this.gameTrain.length - 1]) {
-					return this.gameTrain.push(bone.northSuite, bone.southSuite);
-				} else {
-					return this.gameTrain.push(bone.southSuite, bone.northSuite);
-				}
-			}
-		}		
-	}
-	return false;
-};
-
 Train.prototype.legalMove = function(bone, side) {
-	var tail = this.gameTrain.length - 1;
-	if (side === "left") {
-		if (bone.northSuite === this.gameTrain[0] || bone.southSuite === this.gameTrain[0]) {
+	if (side === "head") {
+		if (bone.northSuite === this.head() || bone.southSuite === this.head()) {
 			return true;
 		}
+		return false;
 	}
 
-	if (side === "right") {
-		if (bone.northSuite === this.gameTrain[tail] || bone.southSuite === this.gameTrain[tail]) {
+	if (side === "tail") {
+		if (bone.northSuite === this.tail() || bone.southSuite === this.tail()) {
 			return true;
 		}
+		return false;
 	}
 	return false;
 };
+
+Train.prototype.head = function() {
+	return this.gameTrain[0].northSuite;
+};
+
+Train.prototype.tail = function() {
+	return this.gameTrain[this.gameTrain.length - 1].southSuite;
+};
+
+Train.prototype.playHead = function(bone) {
+	if (this.legalMove(bone, "head")) {
+		if (bone.northSuite === this.head()) {
+			bone.reOrient();
+		}
+		return this.gameTrain.unshift(bone);
+	}
+	return false
+};
+
+Train.prototype.playTail = function(bone) {
+	if (this.legalMove(bone, "tail")) {
+		if (bone.southSuite === this.tail()) {
+			bone.reOrient();
+		}
+		return this.gameTrain.push(bone);
+	}
+	return false;
+};
+
+Train.prototype.startBone = function(bone) {
+	return this.gameTrain.push(bone);
+};
+
+
+
+
+
+
+
