@@ -10,41 +10,39 @@ describe("Train", function() {
   	train = new Train;
   });
 
-  describe("#playBone", function() {
 
-  	it("should add a bone to the an empty train", function() {
-  		var bone = hand.bones[0];
-  		train.playBone(hand.playBone(0));
-  		expect(train.gameTrain[0]).toBe(bone.northSuite);
-  		expect(train.gameTrain[1]).toBe(bone.southSuite);
-  	});
 
-  	it("should accept a legal move on the left", function() {
-  		var boneStart = new Bone(6,2);
-  		var bone1 = new Bone(6,5);
-  		train.playBone(boneStart);
-  		train.playBone(bone1, "left");
-  		expect(train.gameTrain[1]).toBe(6);
-  		expect(train.gameTrain[0]).toBe(5);
-  	});
+  describe("#head", function() {
 
-  	it("should accept a legal move on the right", function() {
-  		var boneStart = new Bone(6,2);
-  		var bone1 = new Bone(2,5);
-  		train.playBone(boneStart);
-  		train.playBone(bone1, "right");
-  		expect(train.gameTrain[2]).toBe(2);
-  		expect(train.gameTrain[3]).toBe(5);
-  	});
+    it("should return the head of the train", function() {
+      var bone2 = new Bone(4,5);
+      train.gameTrain.push(bone2)
+      expect(train.head()).toBe(4);
+    });
 
-  	it("should do nothing if an illegal move is played", function() {
-  		var boneStart = new Bone(6,2);
-  		var bone1 = new Bone(5,3);
-  		train.playBone(boneStart);
-  		train.playBone(bone1, "right");
-  		expect(train.gameTrain[0]).toBe(6);
-  		expect(train.gameTrain[train.gameTrain.length - 1]).toBe(2);
-  	});
+  });
+
+  describe("#tail", function() {
+
+    it("should return the tail of the train", function() {
+      var bone2 = new Bone(4,5);
+      train.gameTrain.push(bone2)
+      expect(train.tail()).toBe(5);
+    });
+
+  });
+
+
+  describe("#startBone", function() {
+
+    it("should add the first bone to the train", function() {
+      var boneStart = new Bone(6,5);
+      train.startBone(boneStart);
+      expect(train.head()).toBe(6);
+      expect(train.tail()).toBe(5);
+      expect(train.gameTrain.length).toBe(1);
+    });
+
   });
 
   describe("#legalMove", function() {
@@ -52,23 +50,79 @@ describe("Train", function() {
   	it("should return false if the move is illegal", function() {
   		var boneStart = new Bone(6,2);
   		var bone1 = new Bone(3,5);
-  		train.playBone(boneStart, "right");
+  		train.startBone(boneStart, "");
   		expect(train.legalMove(bone1)).toBe(false);
   	});
 
   	it("should return true if the bone can be played to the train front", function() {
   		var boneStart = new Bone(6,2);
   		var bone1 = new Bone(6,5);
-  		train.playBone(boneStart);
-  		expect(train.legalMove(bone1, "left")).toBe(true);
+  		train.startBone(boneStart);
+  		expect(train.legalMove(bone1, "head")).toBe(true);
   	});
 
   	it("should return true if the bone can be played to the train back", function() {
   		var boneStart = new Bone(6,2);
   		var bone1 = new Bone(2,5);
-  		train.playBone(boneStart);
-  		expect(train.legalMove(bone1, "right")).toBe(true);
+  		train.startBone(boneStart);
+  		expect(train.legalMove(bone1, "tail")).toBe(true);
   	});
+
+  });
+
+  describe("#playHead", function() {
+
+    it("should return false if a bone may not be played to the head", function() {
+      var boneStart = new Bone(6,6);
+      var bone3 = new Bone(5,4);
+      train.startBone(boneStart);
+      expect(train.playHead(bone3)).toBe(false);
+    });
+
+    it("should accept a bone that can be played at the head", function() {
+      var boneStart = new Bone(6,6);
+      var bone3 = new Bone(4,6);
+      train.startBone(boneStart);
+      train.playHead(bone3);
+      expect(bone3).toBe(train.gameTrain[0]);
+    });
+
+    it("should reset the head of the train after a successful play", function() {
+      var boneStart = new Bone(6,6);
+      var bone3 = new Bone(6,5);
+      train.startBone(boneStart);
+      expect(train.head()).toBe(6);
+      train.playHead(bone3);
+      expect(train.head()).toBe(5);
+    });
+
+  });
+
+  describe("#playTail", function() {
+
+    it("should return false if a bone may not be played to the tail", function() {
+      var boneStart = new Bone(6,6);
+      var bone3 = new Bone(5,4);
+      train.startBone(boneStart);
+      expect(train.playTail(bone3)).toBe(false);
+    });
+
+    it("should accept a bone that can be played at the tail", function() {
+      var boneStart = new Bone(6,6);
+      var bone3 = new Bone(4,6);
+      train.startBone(boneStart);
+      train.playTail(bone3);
+      expect(bone3).toBe(train.gameTrain[train.gameTrain.length - 1]);
+    });
+
+    it("should reset the tail of the train after a successful play", function() {
+      var boneStart = new Bone(6,6);
+      var bone3 = new Bone(5,6);
+      train.startBone(boneStart);
+      expect(train.tail()).toBe(6);
+      train.playTail(bone3);
+      expect(train.tail()).toBe(5);
+    });
 
   });
 
