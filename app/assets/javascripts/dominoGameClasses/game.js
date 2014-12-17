@@ -12,15 +12,33 @@ function Game(playerArray) {
 Game.prototype.dealBones = function(playerNames) {
 	playerNames.forEach(function(player) {
 		var playerHand = new Hand;
-		debugger
 		playerHand.setHand(this.boneyard, 7);
 		var playerHandObject = {
 			username: player,
 			hand: playerHand
 		};
 		this.hands.push(playerHandObject)
-	}); 
+	}.bind(this)); 
 };
+
+Game.prototype.switchPlayer = function() {
+	if (this.currentPlayer === this.hands.length - 1) {
+		return this.currentPlayer = 0;
+	} else {
+		return this.currentPlayer++;
+	}
+}
+
+// Game.prototype.emptyHand = function() {		
+// 	for (var i = 0; i++; i < this.hands.length) {
+// 		if (this.hands[i][hand].isEmpty()) {
+// 			return this.hands[i][username];
+// 		}
+// 	}
+// 	return false;
+// };
+
+
 
 
 
