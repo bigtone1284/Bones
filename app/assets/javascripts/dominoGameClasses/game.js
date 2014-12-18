@@ -81,6 +81,7 @@ Game.prototype.emptyBoneYard = function() {
 
 Game.prototype.playHead = function(boneIndex) {
 	if (this.train.playHead(this.hands[this.currentPlayer]["hand"].bones[boneIndex])) {
+		this.moves += 1;
 		return this.hands[this.currentPlayer]["hand"].playBone(boneIndex);
 	}
 	return false;	
@@ -88,6 +89,7 @@ Game.prototype.playHead = function(boneIndex) {
 
 Game.prototype.playTail = function(boneIndex) {
 	if (this.train.playTail(this.hands[this.currentPlayer]["hand"].bones[boneIndex])) {
+		this.moves += 1;
 		return this.hands[this.currentPlayer]["hand"].playBone(boneIndex);
 	}
 	return false;	
@@ -95,6 +97,7 @@ Game.prototype.playTail = function(boneIndex) {
 
 Game.prototype.drawBone = function() {
 	if (!this.emptyBoneYard()) {
+		this.moves += 1;
 		return this.hands[this.currentPlayer]["hand"].addBone(this.boneyard);
 	} else {
 		return false;
@@ -102,6 +105,7 @@ Game.prototype.drawBone = function() {
 };
 
 Game.prototype.passTurn = function() {
+	this.moves += 1;
 	this.passes += 1;
 };
 
