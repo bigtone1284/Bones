@@ -149,6 +149,16 @@ describe("Game", function() {
 
 	});
 
+	describe("#playFirst", function() {
+
+		it("should play the first bone", function() {
+			game.whoGoesFirst();
+			game.playFirst(0);
+			expect(game.train.gameTrain.length).toBe(1);
+		});
+
+	});
+
 	describe("#playHead", function() {
 
 		var playerOneHand;

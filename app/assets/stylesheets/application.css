@@ -22,33 +22,17 @@
 	text-align: center;
 }
 
-.hand {
-	margin: 1em;
+#hands {
 	float: left;
+	display: inline-block;
 }
 
-.boneyard {
-	margin: 1em;
+.player {
 	float: left;
+	display: inline-block;
+	margin: 0.1em;
 }
 
 .train {
-	margin: 1em;
 	float: left;
 }
-
-.side {
-	display: inline-block;
-	padding: .2em;
-	border: thin solid black;
-	font-size: 1.5em;
-}
-.gutter {
-	width: 300px;
-	height: 400px;
-	float: left;
-}
-
-
-
-

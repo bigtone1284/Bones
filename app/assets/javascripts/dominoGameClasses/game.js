@@ -79,6 +79,12 @@ Game.prototype.emptyBoneYard = function() {
 	return this.boneyard.isEmpty();
 };
 
+Game.prototype.playFirst = function(boneIndex) {
+	this.moves += 1;
+	this.hands[this.currentPlayer]["hand"].playBone(boneIndex);
+	return this.train.startBone(this.hands[this.currentPlayer]["hand"].bones[boneIndex]);
+};
+
 Game.prototype.playHead = function(boneIndex) {
 	if (this.train.playHead(this.hands[this.currentPlayer]["hand"].bones[boneIndex])) {
 		this.moves += 1;

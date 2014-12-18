@@ -24,10 +24,113 @@
 $(function() {
   console.log("Loaded, bro.");
   $('#start').on('click', function() {
-        
+    var names = $('input').val().split(',');
+    currentDomino = null;
+    game = new Game(names);
+    $('form').empty();
+    makeHands();
+    makeBoneYard();
+    game.whoGoesFirst();
+    currentPlayer();
+    makeTrain();
 
-  });
+    $('#container').on('click', '#boneyard', function() {
+      game.drawBone();
+      makeHand(game.currentPlayer);
+      game.switchPlayer();
+      currentPlayer();
+    });
+
+    $('#hands').on('click', "." + game.currentPlayer + " .domino", setCurrentDomino);
+
+    $('#gameboard').on('click', '.train', function() {
+      if (currentDomino != null) {
+        game.playFirst(currentDomino);
+        makeHand(game.currentPlayer);
+        makeTrain();
+        game.switchPlayer();
+        currentPlayer();
+      }
+    });
+
+  }); 
+
+  
+
 });
+
+  // $('#gameboard').on('click', '#train', function() {
+  //   makePlay('right');
+  // });
+
+  // $('#gameboard').on('click', '#left', function() {
+  //   makePlay('left');
+  // });
+
+  // $('#gameboard').on('click', '#right', function() {
+  //   makePlay('right');
+  // });
+
+
+
+var makeHand = function(x) {
+  $(".player " + x).remove()
+  var hand = $('<div>').addClass("player " + x).text(game.hands[x]["username"]);
+  game.hands[x].hand.bones.forEach(function(bone, index) {
+    var dom = $('<div>').addClass('domino');
+    var northSuite = $('<div>').addClass('northSuite').text(bone.northSuite);
+    var southSuite = $('<div>').addClass('southSuite').text(bone.southSuite);
+    dom.append(northSuite);
+    dom.append(southSuite);
+    dom.attr('bone', index);
+    hand.append(dom);
+  });
+  $('#hands').append(hand);
+};
+
+var makeHands = function() {
+  for (var i = 0; i < game.hands.length; i++) {
+    makeHand(i);
+  }
+};
+
+var makeBoneYard = function() {
+  if (!game.emptyBoneYard()) {
+    var boneYard = $('<button>').attr('id','boneyard').text('Draw a Bone!');
+    $('#container').append(boneYard);
+  } else {
+    var pass = $('<button>').attr('id','pass').text('No more bones!');
+    $('#container').append(pass);
+  }
+};
+
+var currentPlayer = function() {
+  $('#currentPlayerNotice').remove();
+  var current = $('<p>').attr('id','currentPlayerNotice').text(game.hands[game.currentPlayer].username + '\'s turn')
+  $('#container').append(current);
+};
+
+var makeTrain = function() {
+  $('.train').remove();
+  var train = $('<div>').addClass('train').text("Play Here!")
+  game.train.gameTrain.forEach(function(bone, index) {
+    var dom = $('<div>').addClass('domino train');
+    var northSuite = $('<div>').addClass('northSuite').text(bone.northSuite);
+    var southSuite = $('<div>').addClass('southSuite').text(bone.southSuite);
+    dom.append(northSuite);
+    dom.append(southSuite);
+    dom.attr('bone', index);
+    train.append(dom);
+  })
+  $(".head").remove();
+  $(".tail").remove();
+  $(".northSuite").first().addClass("head");
+  $(".southSuite").last().addClass("tail");
+  $('#gameboard').append(train);
+};
+
+
+
 //   $('#container').on('click', '#boneyard', function() {
 //   	game.play("pass");
 //   	$('.gutter').toggleClass('active');
@@ -38,17 +141,17 @@ $(function() {
 
 //   $('.gutter').on('click', '.domino', setCurrentDomino);
 
-//   $('#gameboard').on('click', '#train', function() {
-//   	makePlay('right');
-//   });
+  // $('#gameboard').on('click', '#train', function() {
+  // 	makePlay('right');
+  // });
 
-//   $('#gameboard').on('click', '#left', function() {
-//   	makePlay('left');
-//   });
+  // $('#gameboard').on('click', '#left', function() {
+  // 	makePlay('left');
+  // });
 
-//   $('#gameboard').on('click', '#right', function() {
-//   	makePlay('right');
-//   });
+  // $('#gameboard').on('click', '#right', function() {
+  // 	makePlay('right');
+  // });
 
 // });
 // var currentDomino;
@@ -67,29 +170,7 @@ $(function() {
 //   makeTrain();
 // };
 
-// var makeHand1 = function() {
-// 	var i = 0;
-// 	var hand1 = $('<div>').addClass('hand 1').text('Player 1');
-// 	game.hand1.bones.forEach(function(bone) {
-// 		var dom = $('<div>').addClass('domino').text(bone.northSuite + ' | ' + bone.southSuite);
-// 		dom.attr('bone', i);
-// 		i++;
-// 		hand1.append(dom);
-// 	});
-// 	$('#player1').append(hand1);
-// };
 
-// var makeHand2 = function() {
-// 	var i = 0;
-// 	var hand2 = $('<div>').addClass('hand 2').text('Player 2');
-// 	game.hand2.bones.forEach(function(bone) {
-// 		var dom = $('<div>').addClass('domino').text(bone.northSuite + ' | ' + bone.southSuite);
-// 		dom.attr('bone', i);
-// 		i++;
-// 		hand2.append(dom);
-// 	});
-// 	$('#player2').append(hand2);
-// };
 
 // var makeBoneYard = function() {
 // 	var boneYard = $('<button>').attr('id','boneyard').text('Draw a Bone!');
