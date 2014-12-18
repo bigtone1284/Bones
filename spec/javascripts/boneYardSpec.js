@@ -24,7 +24,7 @@ describe("BoneYard", function() {
 
   });
 
-  describe("#getRandomBone", function () {
+  describe("#getRandomBone", function() {
 
   	it("should return a random object of type Bone from the boneyard", function() {
   		var bone = boneyard.getRandomBone();
@@ -40,7 +40,7 @@ describe("BoneYard", function() {
 
   });
 
-  describe("#isEmpty", function () {
+  describe("#isEmpty", function() {
 
   	it("should return false if the boneyard has bones in it", function() {
   		expect(boneyard.bones.length).toBe(28);
@@ -49,11 +49,10 @@ describe("BoneYard", function() {
 
   	it("should return true if the boneyard has no bones in it", function() {
   		expect(boneyard.bones.length).toBe(28);
-  		boneyard.bones = 0;
+  		boneyard.bones = [];
   		expect(boneyard.isEmpty()).toBe(true);
   	});
 
-  })
-
+  });
 
 });

@@ -56,4 +56,18 @@ describe("Bone", function() {
 
   });
 
+  describe("#reOrient", function() {
+
+    it("should swap the values of northSuite and southSuite", function() {
+      var bone6 = new Bone(4,3);
+      expect(bone6.southSuite).toBe(3);
+      expect(bone6.northSuite).toBe(4);
+      bone6.reOrient();
+      expect(bone6.southSuite).toBe(4);
+      expect(bone6.northSuite).toBe(3); 
+    });
+
+  });
+
+
 });

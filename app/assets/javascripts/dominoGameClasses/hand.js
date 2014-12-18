@@ -16,11 +16,9 @@ Hand.prototype.addBone = function(boneYard) {
 
 Hand.prototype.totalPips = function() {
 	var value = 0;
-	this.bones.forEach( 
-		function(bone) {
-			value += bone.totalPips();
-		}
-	)
+	this.bones.forEach(function(bone) {
+		value += bone.totalPips();
+	})
 	return value;
 };
 

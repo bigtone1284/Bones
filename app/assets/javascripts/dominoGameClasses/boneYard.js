@@ -17,5 +17,5 @@ BoneYard.prototype.getRandomBone = function() {
 };
 
 BoneYard.prototype.isEmpty = function() {
-	return this.bones === 0;
+	return this.bones.length === 0;
 };

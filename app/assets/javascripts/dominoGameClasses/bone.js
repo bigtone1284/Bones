@@ -1,7 +1,6 @@
 function Bone(n,s) {
 	this.northSuite = n;
 	this.southSuite = s;
-	this.orientation = 0;
 }
 
 Bone.prototype.double = function() {
@@ -17,5 +16,6 @@ Bone.prototype.largestSuite = function() {
 		this.northSuite : this.southSuite;
 };
 
-
-
+Bone.prototype.reOrient = function() { 
+	this.northSuite = this.southSuite + ((this.southSuite = this.northSuite) - this.northSuite);
+};
