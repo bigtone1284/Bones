@@ -146,6 +146,20 @@ describe("Hand", function() {
     });
   });
 
+  describe("#hasBone", function() {
+    it("should return false if a bone is not in a hand", function() {
+      hand.bones = [];
+      var boneTest = new Bone(0,0);
+      expect(hand.hasBone(boneTest)).toBe(false);
+    });
+
+    it("should return true if a bone is not in a hand", function() {
+      var boneTest = new Bone(0,0);
+      hand.bones = [boneTest];
+      expect(hand.hasBone(boneTest)).toBe(true);
+    });
+  });
+
 
 
 });

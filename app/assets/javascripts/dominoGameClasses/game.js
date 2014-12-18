@@ -7,6 +7,7 @@ function Game(playerArray) {
 	this.currentPlayer = null;
 	this.passes = 0;
 	this.dealBones(playerArray);
+	this.winner = null;
 }
 
 
@@ -46,6 +47,7 @@ Game.prototype.switchPlayer = function() {
 Game.prototype.emptyHand = function() {
 	for (var i = 0; i < this.hands.length; i++) {
 		if (this.hands[i]["hand"].isEmpty()) {
+			this.active = false;
 			return i;
 		}
 	}
@@ -77,63 +79,40 @@ Game.prototype.emptyBoneYard = function() {
 	return this.boneyard.isEmpty();
 };
 
+Game.prototype.playHead = function(boneIndex) {
+	if (this.train.playHead(this.hands[this.currentPlayer]["hand"].bones[boneIndex])) {
+		this.moves += 1;
+		return this.hands[this.currentPlayer]["hand"].playBone(boneIndex);
+	}
+	return false;	
+};
 
+Game.prototype.playTail = function(boneIndex) {
+	if (this.train.playTail(this.hands[this.currentPlayer]["hand"].bones[boneIndex])) {
+		this.moves += 1;
+		return this.hands[this.currentPlayer]["hand"].playBone(boneIndex);
+	}
+	return false;	
+};
 
+Game.prototype.drawBone = function() {
+	if (!this.emptyBoneYard()) {
+		this.moves += 1;
+		return this.hands[this.currentPlayer]["hand"].addBone(this.boneyard);
+	} else {
+		return false;
+	}
+};
 
+Game.prototype.passTurn = function() {
+	this.moves += 1;
+	this.passes += 1;
+};
 
-
-
-
-
-
-// var game = {
-// 	boneYard: '',
-// 	train: '',
-// 	hand1: '',
-// 	hand2: '',
-// 	currentPlayer: 1,
-// 	active: true,
-// 	start: function() {
-// 		this.boneYard = new BoneYard;
-// 		this.train = new Train;
-// 		this.hand1 = new Hand;
-// 		this.hand1.setHand(this.boneYard, 7);
-// 		this.hand2 = new Hand;
-// 		this.hand2.setHand(this.boneYard, 7);
-// 	},
-// 	play: function(move, bone) {
-// 		var hand;
-// 		if (this.currentPlayer === 1) {
-// 			hand = this.hand1;
-// 		} else {
-// 			hand = this.hand2;
-// 		}
-
-// 		if (move === "pass") {
-// 			if (this.boneYard.bones.length > 0) {
-// 				hand.addBone(this.boneYard);
-// 			}
-// 			return this.switchPlayer();
-// 		} else {
-// 			var x = this.train.playBone(hand.peek(bone), move);
-			
-// 			if (x) {
-// 				hand.playBone(bone);
-// 				return this.switchPlayer();
-// 			}
-// 		}
-// 		return false;
-// 	},
-// 	checkWin: function() {
-// 		if (this.hand1.bones.length === 0 || this.hand2.bones.length === 0) {
-// 			alert(this.currentPlayer + " has won!");
-// 			return true;
-// 		} else {
-// 			return false;
-// 		}
-// 	},
-// 	switchPlayer: function() {
-// 		this.currentPlayer *= -1;
-// 	}
-
-// };
+Game.prototype.passGameOver = function() {
+	if (this.passes === this.hands.length) {
+		this.active = false;
+		return true;
+	}
+	return false;
+};
