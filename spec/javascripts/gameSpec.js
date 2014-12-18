@@ -105,11 +105,65 @@ describe("Game", function() {
 			expect(game.emptyHand()).toBe(2);
 		});
 
+	});
+
+	describe("#fewestPips", function() {
+
+		var playerOneHand;
+		var playerTwoHand;
+		var playerThreeHand;
+
+		beforeEach(function() {
+			playerOneHand = game.hands[0]["hand"];
+			playerTwoHand = game.hands[1]["hand"];
+			playerThreeHand = game.hands[2]["hand"];
+		});
+
+		it("should return the index of the player with the fewest pips", function() {
+			playerOneHand.bones = [new Bone(3,4)];
+			playerTwoHand.bones = [new Bone(1,2)];
+			playerThreeHand.bones = [new Bone(5,5)];
+			expect(game.fewestPips()).toBe(1);
+		});
+
+		it("should return the index of the player who doesn't have the heaviest bone in case there is a tie", function() {
+			playerOneHand.bones = [new Bone(1,2)];
+			playerTwoHand.bones = [new Bone(0,3)];
+			playerThreeHand.bones = [new Bone(5,5)];
+			expect(game.fewestPips()).toBe(0);
+		});
 
 	});
 
+	describe("#emptyBoneYard", function() {
 
+		it("should return false if there boneyard has bones", function() {
+			expect(game.emptyBoneYard()).toBe(false);
+		});
 
+		it("should return true if the boneyard is empty", function() {
+			game.boneyard.bones = [];
+			expect(game.emptyBoneYard()).toBe(true);
+		});
+
+	});
+
+	describe("#drawBone", function() {
+
+		// let the user play until they get a playable bone.  
+
+	});
+
+	describe("#pass", function() {
+
+		// counts passes when the bown yard is empty.  If passes === num of hands, the game ends.  
+
+	});
+
+	describe("#checkWin", function() {
+		//not sure how exactly it will work but will report a winner if the game is ovver?
+	})
 
 
 });
+

@@ -52,21 +52,30 @@ Game.prototype.emptyHand = function() {
 	return false;
 };
 
-// Game.prototype.fewestPips = function() {
-// 	var pips = 999999;
-// 	var playerIndex = -1;
-// 	this.hands.forEach(function(player, index) {
-// 		if (player["hand"].totalPips() < pips) {
-// 			pips = player["hand"].totalPips();
-// 			playerIndex = index;
-// 		}
-// 		if (player["hand"].totalPips() === pips) {
-			
+Game.prototype.fewestPips = function() {
+	var pips = 999999;
+	var playerIndex = -1;
+	this.hands.forEach(function(player, index) {
+		if (player["hand"].totalPips() < pips) {
+			pips = player["hand"].totalPips();
+			playerIndex = index;
+		} else if (player["hand"].totalPips() === pips) {
+			var testHand = new Hand;
+			var heavyBoneOne = player["hand"].heaviestBone();
+			var heavyBoneTwo = this.hands[playerIndex]["hand"].heaviestBone();
+			testHand.bones = [heavyBoneOne, heavyBoneTwo];
+			var heavy = testHand.heaviestBone();
+			if (heavy === heavyBoneTwo) {
+				playerIndex = index;
+			}
+		}
+	}.bind(this));
+	return playerIndex;
+};
 
-// 		}
-// 	});
-// 	return playerIndex
-// };
+Game.prototype.emptyBoneYard = function() {
+	return this.boneyard.isEmpty();
+};
 
 
 
