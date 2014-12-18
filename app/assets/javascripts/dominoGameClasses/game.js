@@ -81,8 +81,8 @@ Game.prototype.emptyBoneYard = function() {
 
 Game.prototype.playFirst = function(boneIndex) {
 	this.moves += 1;
+	this.train.startBone(this.hands[this.currentPlayer]["hand"].bones[boneIndex]);
 	this.hands[this.currentPlayer]["hand"].playBone(boneIndex);
-	return this.train.startBone(this.hands[this.currentPlayer]["hand"].bones[boneIndex]);
 };
 
 Game.prototype.playHead = function(boneIndex) {

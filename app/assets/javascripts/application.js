@@ -74,7 +74,7 @@ $(function() {
 
 
 var makeHand = function(x) {
-  $(".player " + x).remove()
+  $(".player." + x).remove()
   var hand = $('<div>').addClass("player " + x).text(game.hands[x]["username"]);
   game.hands[x].hand.bones.forEach(function(bone, index) {
     var dom = $('<div>').addClass('domino');
@@ -122,11 +122,30 @@ var makeTrain = function() {
     dom.attr('bone', index);
     train.append(dom);
   })
-  $(".head").remove();
-  $(".tail").remove();
-  $(".northSuite").first().addClass("head");
-  $(".southSuite").last().addClass("tail");
+  console.log("---------------------");
+  console.log("Current head and tail");
+  console.log("Head: ", $(".head"));
+  console.log("Tail: ", $(".tail"));
+  console.log("---------------------");
   $('#gameboard').append(train);
+  $(".head").removeClass("head");
+  $(".tail").removeClass("tail");
+  
+  console.log("---------------------");
+  console.log("New head and tail");
+  console.log("Head: ", $(".train .northSuite").first());
+  console.log("Tail: ", $(".train .southSuite").last());
+  console.log("---------------------");
+
+  $(".train .northSuite").first().addClass("head");
+  $(".train .southSuite").last().addClass("tail");
+
+  console.log("---------------------");
+  console.log("New head and tail after 'class'-ification");
+  console.log("Head: ", $(".train .northSuite").first());
+  console.log("Tail: ", $(".train .southSuite").last());
+  console.log("---------------------");
+
 };
 
 

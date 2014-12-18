@@ -36,3 +36,7 @@
 .train {
 	float: left;
 }
+
+.domino .train {
+	display: inline-block;
+}
