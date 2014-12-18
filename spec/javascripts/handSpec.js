@@ -108,6 +108,17 @@ describe("Hand", function() {
   		expect(hand.heaviestBone()).toBe(bone3)
   	});
 
+    it("should break ties between two bones with the same totalPips", function() {
+      var bone1 = new Bone(1,0);
+      var bone2 = new Bone(5,1);
+      var bone3 = new Bone(4,2);
+      boneyard.bones = [bone1, bone2, bone3];
+      hand.bones = [];
+      hand.setHand(boneyard, 3);
+      expect(hand.heaviestBone()).toBe(bone2)
+    });
+
+
   });
 
   describe("#playBone", function() {
