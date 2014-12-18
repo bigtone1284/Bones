@@ -24,88 +24,87 @@
 $(function() {
   console.log("Loaded, bro.");
   $('#start').on('click', function() {
-    this.remove();
-    game.start();
-    currentDomino = null;
-    makeDom();
+        
+
   });
-  $('#container').on('click', '#boneyard', function() {
-  	game.play("pass");
-  	$('.gutter').toggleClass('active');
-  	makeDom();
-  });
-
-  // $('#player1.active').on('click', '.domino' , setCurrentDomino);
-
-  $('.gutter').on('click', '.domino', setCurrentDomino);
-
-  $('#gameboard').on('click', '#train', function() {
-  	makePlay('right');
-  });
-
-  $('#gameboard').on('click', '#left', function() {
-  	makePlay('left');
-  });
-
-  $('#gameboard').on('click', '#right', function() {
-  	makePlay('right');
-  });
-
 });
-var currentDomino;
-//figure otu how to change class of things as you change them 
-//add domino class info to each piece (each suite value).
+//   $('#container').on('click', '#boneyard', function() {
+//   	game.play("pass");
+//   	$('.gutter').toggleClass('active');
+//   	makeDom();
+//   });
 
-var makeDom = function() {
-  $('#container').empty();
-  $('#player1').empty();
-  $('#player2').empty();
-  $('#gameboard').empty();
+//   // $('#player1.active').on('click', '.domino' , setCurrentDomino);
 
-  makeHand1();
-  makeHand2();
-  makeBoneYard();
-  makeTrain();
-};
+//   $('.gutter').on('click', '.domino', setCurrentDomino);
 
-var makeHand1 = function() {
-	var i = 0;
-	var hand1 = $('<div>').addClass('hand 1').text('Player 1');
-	game.hand1.bones.forEach(function(bone) {
-		var dom = $('<div>').addClass('domino').text(bone.northSuite + ' | ' + bone.southSuite);
-		dom.attr('bone', i);
-		i++;
-		hand1.append(dom);
-	});
-	$('#player1').append(hand1);
-};
+//   $('#gameboard').on('click', '#train', function() {
+//   	makePlay('right');
+//   });
 
-var makeHand2 = function() {
-	var i = 0;
-	var hand2 = $('<div>').addClass('hand 2').text('Player 2');
-	game.hand2.bones.forEach(function(bone) {
-		var dom = $('<div>').addClass('domino').text(bone.northSuite + ' | ' + bone.southSuite);
-		dom.attr('bone', i);
-		i++;
-		hand2.append(dom);
-	});
-	$('#player2').append(hand2);
-};
+//   $('#gameboard').on('click', '#left', function() {
+//   	makePlay('left');
+//   });
 
-var makeBoneYard = function() {
-	var boneYard = $('<button>').attr('id','boneyard').text('Draw a Bone!');
-	$('#container').append(boneYard);
-};
+//   $('#gameboard').on('click', '#right', function() {
+//   	makePlay('right');
+//   });
 
-var makeTrain = function() {
-// this train doesnt have to look ike the array on the page.  
+// });
+// var currentDomino;
+// //figure otu how to change class of things as you change them 
+// //add domino class info to each piece (each suite value).
 
-	var train = $('<div>').attr('id','train').text('Train');
-	$('#gameboard').append(train);
-	game.train.gameTrain.forEach(function(bone) {
-		var dom = $('<div>').addClass('side').text(bone);
-		$('#gameboard').append(dom);
-	});
-	$('.side').first().attr("id","left");
-	$('.side').last().attr("id","right");
-};
+// var makeDom = function() {
+//   $('#container').empty();
+//   $('#player1').empty();
+//   $('#player2').empty();
+//   $('#gameboard').empty();
+
+//   makeHand1();
+//   makeHand2();
+//   makeBoneYard();
+//   makeTrain();
+// };
+
+// var makeHand1 = function() {
+// 	var i = 0;
+// 	var hand1 = $('<div>').addClass('hand 1').text('Player 1');
+// 	game.hand1.bones.forEach(function(bone) {
+// 		var dom = $('<div>').addClass('domino').text(bone.northSuite + ' | ' + bone.southSuite);
+// 		dom.attr('bone', i);
+// 		i++;
+// 		hand1.append(dom);
+// 	});
+// 	$('#player1').append(hand1);
+// };
+
+// var makeHand2 = function() {
+// 	var i = 0;
+// 	var hand2 = $('<div>').addClass('hand 2').text('Player 2');
+// 	game.hand2.bones.forEach(function(bone) {
+// 		var dom = $('<div>').addClass('domino').text(bone.northSuite + ' | ' + bone.southSuite);
+// 		dom.attr('bone', i);
+// 		i++;
+// 		hand2.append(dom);
+// 	});
+// 	$('#player2').append(hand2);
+// };
+
+// var makeBoneYard = function() {
+// 	var boneYard = $('<button>').attr('id','boneyard').text('Draw a Bone!');
+// 	$('#container').append(boneYard);
+// };
+
+// var makeTrain = function() {
+// // this train doesnt have to look ike the array on the page.  
+
+// 	var train = $('<div>').attr('id','train').text('Train');
+// 	$('#gameboard').append(train);
+// 	game.train.gameTrain.forEach(function(bone) {
+// 		var dom = $('<div>').addClass('side').text(bone);
+// 		$('#gameboard').append(dom);
+// 	});
+// 	$('.side').first().attr("id","left");
+// 	$('.side').last().attr("id","right");
+// };

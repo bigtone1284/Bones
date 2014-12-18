@@ -67,4 +67,8 @@ Hand.prototype.playBone = function(boneIndex) {
 	return this.bones.splice(boneIndex, 1)[0];
 };
 
+Hand.prototype.hasBone = function(bone) {
+	return this.bones.indexOf(bone) > -1;
+};
+
 

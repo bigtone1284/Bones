@@ -103,6 +103,7 @@ describe("Game", function() {
 		it("should return the index of the player with the empty hand in the hands array", function() {
 			game.hands[2]["hand"].bones = [];
 			expect(game.emptyHand()).toBe(2);
+			expect(game.active).toBe(false);
 		});
 
 	});
@@ -148,21 +149,124 @@ describe("Game", function() {
 
 	});
 
+	describe("#playHead", function() {
+
+		var playerOneHand;
+		var playerTwoHand;
+		var playerThreeHand;
+
+		beforeEach(function() {
+			game.currentPlayer = 0;
+			game.train.gameTrain = [new Bone(6,6)];
+			playerOneHand = game.hands[0]["hand"];
+			playerTwoHand = game.hands[1]["hand"];
+			playerThreeHand = game.hands[2]["hand"];
+		});
+
+		it("should return false if a bone may not be played", function() {
+			playerOneHand.bones = [new Bone(5,4)];
+			expect(game.playHead(0)).toBe(false);
+		});
+
+		it("should play bone to the train if its a legal move", function() {
+			var testBone = new Bone(6,4);
+			playerOneHand.bones = [testBone];
+			game.playHead(0);
+			expect(game.train.gameTrain.indexOf(testBone) > -1).toBe(true);
+		})
+
+		it("should remove the played bone from the player's hand", function() {
+			var testBone = new Bone(6,4);
+			var testBone2 = new Bone(2,3);
+			playerOneHand.bones = [testBone, testBone2];
+			game.playHead(0);
+			expect(playerOneHand.bones.indexOf(testBone) > -1).toBe(false);
+		});
+
+	});
+		
+		describe("#playTail", function() {
+
+		var playerOneHand;
+		var playerTwoHand;
+		var playerThreeHand;
+
+		beforeEach(function() {
+			game.currentPlayer = 0;
+			game.train.gameTrain = [new Bone(6,6)];
+			playerOneHand = game.hands[0]["hand"];
+			playerTwoHand = game.hands[1]["hand"];
+			playerThreeHand = game.hands[2]["hand"];
+		});
+
+		it("should return false if a bone may not be played", function() {
+			playerOneHand.bones = [new Bone(5,4)];
+			expect(game.playTail(0)).toBe(false);
+		});
+
+		it("should play bone to the train if its a legal move", function() {
+			var testBone = new Bone(6,4);
+			playerOneHand.bones = [testBone];
+			game.playTail(0);
+			expect(game.train.gameTrain.indexOf(testBone) > -1).toBe(true);
+		})
+
+		it("should remove the played bone from the player's hand", function() {
+			var testBone = new Bone(6,4);
+			var testBone2 = new Bone(2,3);
+			playerOneHand.bones = [testBone, testBone2];
+			game.playTail(0);
+			expect(playerOneHand.bones.indexOf(testBone) > -1).toBe(false);
+		});
+
+	});
+
+
 	describe("#drawBone", function() {
 
-		// let the user play until they get a playable bone.  
+		it("should give users a bone from the boneyard", function() {
+			game.currentPlayer = 0;
+			var playerOneHand = game.hands[0]["hand"].bones;
+			expect(playerOneHand.length).toBe(7);
+			expect(game.boneyard.bones.length).toBe(7);
+			game.drawBone();
+			expect(playerOneHand.length).toBe(8);
+			expect(game.boneyard.bones.length).toBe(6);
+		});
+
+		it("should return false if the boneyard is empty", function() {
+			game.currentPlayer = 0;
+			var playerOneHand = game.hands[0]["hand"].bones;
+			game.boneyard.bones = [];
+			expect(game.drawBone()).toBe(false);
+		})
 
 	});
 
-	describe("#pass", function() {
+	describe("#passTurn", function() {
 
-		// counts passes when the bown yard is empty.  If passes === num of hands, the game ends.  
+		it("#should increase passes by 1", function() {
+			game.currentPlayer = 0;
+			expect(game.passes).toBe(0);
+			game.passTurn();
+			expect(game.passes).toBe(1);
+		})
 
 	});
 
-	describe("#checkWin", function() {
-		//not sure how exactly it will work but will report a winner if the game is ovver?
-	})
+	describe("#passGameOver", function() {
+
+		it("#should return false if the game is not over", function() {
+			expect(game.passGameOver()).toBe(false);
+		});
+
+		it("should return true if passes = the number of players", function() {
+			game.passes = 3;
+			expect(game.passGameOver()).toBe(true);
+			expect(game.active).toBe(false);
+		})
+
+	});
 
 
 });
