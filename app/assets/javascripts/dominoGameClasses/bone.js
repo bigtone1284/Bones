@@ -7,10 +7,6 @@ Bone.prototype.double = function() {
 	return this.northSuite === this.southSuite;
 };
 
-Bone.prototype.totalPips = function() {
-	return this.northSuite + this.southSuite;
-};
-
 Bone.prototype.largestSuite = function() {
 	return this.northSuite >= this.southSuite ?
 		this.northSuite : this.southSuite;
@@ -18,4 +14,8 @@ Bone.prototype.largestSuite = function() {
 
 Bone.prototype.reOrient = function() { 
 	this.northSuite = this.southSuite + ((this.southSuite = this.northSuite) - this.northSuite);
+};
+
+Bone.prototype.totalPips = function() {
+	return this.northSuite + this.southSuite;
 };

@@ -30,14 +30,6 @@ describe("Bone", function() {
     
   });
 
-  describe("#totalPips", function() {
-
-    it("should return the total number of pips on the bone", function() {
-      expect(bone.totalPips()).toBe(10);
-    });
-
-  });
-
   describe("#largestSuite", function() {
 
     it("should return northSuite if larger than southSuite", function() {
@@ -55,7 +47,7 @@ describe("Bone", function() {
     });
 
   });
-
+  
   describe("#reOrient", function() {
 
     it("should swap the values of northSuite and southSuite", function() {
@@ -69,5 +61,12 @@ describe("Bone", function() {
 
   });
 
+  describe("#totalPips", function() {
 
+    it("should return the total number of pips on the bone", function() {
+      expect(bone.totalPips()).toBe(10);
+    });
+
+  });
+  
 });

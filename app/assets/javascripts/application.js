@@ -41,7 +41,7 @@ $(function() {
       currentPlayer();
     });
 
-    $('#hands').on('click', "." + game.currentPlayer + " .domino", setCurrentDomino);
+    $('#hands').on('click', "." + "current" + " .domino", setCurrentDomino);
     //I THINK THIS IS NOT WORKING THE WAY I THINK IT WILLLLLL!!!!!
 
 
@@ -60,11 +60,9 @@ $(function() {
     $('#gameboard').on('click', '.head', function() {
       if (currentDomino != null) {
         var x = game.playHead(currentDomino);
-        debugger
         if (x) {
           makeTrain();
           makeHand(game.currentPlayer);
-          debugger
           //write game over function
           game.switchPlayer();
           return currentPlayer();
@@ -75,7 +73,7 @@ $(function() {
     $('#gameboard').on('click', '.tail', function() {
       if (currentDomino != null) {
         var x = game.playTail(currentDomino);
-        debugger
+
         if (x) {
           makeTrain();
           makeHand(game.currentPlayer);
