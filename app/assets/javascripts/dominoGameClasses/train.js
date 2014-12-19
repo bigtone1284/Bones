@@ -2,6 +2,10 @@ function Train() {
 	this.gameTrain = [];
 }
 
+Train.prototype.head = function() {
+	return this.gameTrain[0].northSuite;
+};
+
 Train.prototype.legalMove = function(bone, side) {
 	if (side === "head") {
 		if (bone.northSuite === this.head() || bone.southSuite === this.head()) {
@@ -17,14 +21,6 @@ Train.prototype.legalMove = function(bone, side) {
 		return false;
 	}
 	return false;
-};
-
-Train.prototype.head = function() {
-	return this.gameTrain[0].northSuite;
-};
-
-Train.prototype.tail = function() {
-	return this.gameTrain[this.gameTrain.length - 1].southSuite;
 };
 
 Train.prototype.playHead = function(bone) {
@@ -50,6 +46,12 @@ Train.prototype.playTail = function(bone) {
 Train.prototype.startBone = function(bone) {
 	return this.gameTrain.push(bone);
 };
+
+Train.prototype.tail = function() {
+	return this.gameTrain[this.gameTrain.length - 1].southSuite;
+};
+
+
 
 
 

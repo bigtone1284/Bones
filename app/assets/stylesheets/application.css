@@ -15,39 +15,45 @@
  */
 
 .domino {
-	border: thin solid black;
-	padding: 0.1em;
+	padding: .1em;
 	font-size: 2em;
-	width: 2em;
+	margin: .1em;
+	border: solid 1px;
 	text-align: center;
+	overflow: auto;
 }
 
-.hand {
-	margin: 1em;
+#hands {
 	float: left;
 }
 
-.boneyard {
-	margin: 1em;
+.player {
 	float: left;
+	display: inline-block;
+	margin: 0.1em;
 }
 
 .train {
-	margin: 1em;
 	float: left;
 }
 
-.side {
+.domino .train {
 	display: inline-block;
-	padding: .2em;
-	border: thin solid black;
-	font-size: 1.5em;
 }
-.gutter {
-	width: 300px;
-	height: 400px;
+
+.northSuite {
 	float: left;
+	padding: 0.1em;
+	text-align: center;
+	border-right: solid 1px;
 }
+
+.southSuite {
+	float: left;
+	padding: 0.1em;
+	text-align: center;
+}
+
 
 
 

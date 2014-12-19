@@ -10,7 +10,6 @@ function Game(playerArray) {
 	this.winner = null;
 }
 
-
 Game.prototype.dealBones = function(playerNames) {
 	playerNames.forEach(function(player) {
 		var playerHand = new Hand;
@@ -23,25 +22,17 @@ Game.prototype.dealBones = function(playerNames) {
 	}.bind(this)); 
 };
 
-Game.prototype.whoGoesFirst = function() {
-	var heaviestBones = new Hand;
-	this.hands.forEach(function(player, index) {
-		heaviestBones.bones.push(player["hand"].heaviestBone());
-	});
-	var heavy = heaviestBones.heaviestBone();
-	return this.currentPlayer = heaviestBones.bones.indexOf(heavy);
+Game.prototype.drawBone = function() {
+	if (!this.emptyBoneYard()) {
+		this.moves += 1;
+		return this.hands[this.currentPlayer]["hand"].addBone(this.boneyard);
+	} else {
+		return false;
+	}
 };
 
-Game.prototype.switchPlayer = function() {
-	if (this.currentPlayer === null) {
-		return false;
-	} else {
-		if (this.currentPlayer === this.hands.length - 1) {
-			return this.currentPlayer = 0;
-		} else {
-			return this.currentPlayer += 1;
-		}
-	}
+Game.prototype.emptyBoneYard = function() {
+	return this.boneyard.isEmpty();
 };
 
 Game.prototype.emptyHand = function() {
@@ -75,8 +66,45 @@ Game.prototype.fewestPips = function() {
 	return playerIndex;
 };
 
-Game.prototype.emptyBoneYard = function() {
-	return this.boneyard.isEmpty();
+Game.prototype.gameOver = function() {
+	if (this.emptyHand()) {
+		return this.winner = this.currentPlayer;
+	} else if (this.passes === this.numberOfPlayers()) {
+		return this.winner = this.fewestPips();
+	}
+	return false;
+};
+
+Game.prototype.getPlayerHand = function(handsIndex) {
+	return this.hands[handsIndex].hand;
+}
+
+Game.prototype.getPlayerName = function(handsIndex) {
+	return this.hands[handsIndex].username;
+}
+
+Game.prototype.numberOfPlayers = function() {
+	return this.hands.length
+}
+
+
+Game.prototype.passGameOver = function() {
+	if (this.passes === this.hands.length) {
+		this.active = false;
+		return true;
+	}
+	return false;
+};
+
+Game.prototype.passTurn = function() {
+	this.moves += 1;
+	this.passes += 1;
+};
+
+Game.prototype.playFirst = function(boneIndex) {
+	this.moves += 1;
+	this.train.startBone(this.hands[this.currentPlayer]["hand"].bones[boneIndex]);
+	this.hands[this.currentPlayer]["hand"].playBone(boneIndex);
 };
 
 Game.prototype.playHead = function(boneIndex) {
@@ -95,24 +123,23 @@ Game.prototype.playTail = function(boneIndex) {
 	return false;	
 };
 
-Game.prototype.drawBone = function() {
-	if (!this.emptyBoneYard()) {
-		this.moves += 1;
-		return this.hands[this.currentPlayer]["hand"].addBone(this.boneyard);
-	} else {
+Game.prototype.switchPlayer = function() {
+	if (this.currentPlayer === null) {
 		return false;
+	} else {
+		if (this.currentPlayer === this.hands.length - 1) {
+			return this.currentPlayer = 0;
+		} else {
+			return this.currentPlayer += 1;
+		}
 	}
 };
 
-Game.prototype.passTurn = function() {
-	this.moves += 1;
-	this.passes += 1;
-};
-
-Game.prototype.passGameOver = function() {
-	if (this.passes === this.hands.length) {
-		this.active = false;
-		return true;
-	}
-	return false;
+Game.prototype.whoGoesFirst = function() {
+	var heaviestBones = new Hand;
+	this.hands.forEach(function(player, index) {
+		heaviestBones.bones.push(player["hand"].heaviestBone());
+	});
+	var heavy = heaviestBones.heaviestBone();
+	return this.currentPlayer = heaviestBones.bones.indexOf(heavy);
 };
