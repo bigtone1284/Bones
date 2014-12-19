@@ -84,12 +84,14 @@ describe("Game", function() {
 
 		it("should increase the currentPlayer by 1 when called", function() {
 			game.currentPlayer = 1;
-			expect(game.switchPlayer()).toBe(2);
+			game.switchPlayer();
+			expect(game.currentPlayer).toBe(2);
 		});
 
 		it("should increase the currentPlayer by 1 when called", function() {
 			game.currentPlayer = 2;
-			expect(game.switchPlayer()).toBe(0);
+			game.switchPlayer();
+			expect(game.currentPlayer).toBe(0);
 		});
 
 	});

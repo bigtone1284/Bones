@@ -15,16 +15,16 @@
  */
 
 .domino {
-	border: thin solid black;
-	padding: 0.1em;
+	padding: .1em;
 	font-size: 2em;
-	width: 2em;
+	margin: .1em;
+	border: solid 1px;
 	text-align: center;
+	overflow: auto;
 }
 
 #hands {
 	float: left;
-	display: inline-block;
 }
 
 .player {
@@ -40,3 +40,21 @@
 .domino .train {
 	display: inline-block;
 }
+
+.northSuite {
+	float: left;
+	padding: 0.1em;
+	text-align: center;
+	border-right: solid 1px;
+}
+
+.southSuite {
+	float: left;
+	padding: 0.1em;
+	text-align: center;
+}
+
+
+
+
+

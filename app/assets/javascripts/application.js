@@ -42,6 +42,10 @@ $(function() {
     });
 
     $('#hands').on('click', "." + game.currentPlayer + " .domino", setCurrentDomino);
+    //I THINK THIS IS NOT WORKING THE WAY I THINK IT WILLLLLL!!!!!
+
+
+
 
     $('#gameboard').on('click', '.train', function() {
       if (currentDomino != null) {
@@ -50,6 +54,36 @@ $(function() {
         makeTrain();
         game.switchPlayer();
         currentPlayer();
+      }
+    });
+
+    $('#gameboard').on('click', '.head', function() {
+      if (currentDomino != null) {
+        var x = game.playHead(currentDomino);
+        debugger
+        if (x) {
+          makeTrain();
+          makeHand(game.currentPlayer);
+          debugger
+          //write game over function
+          game.switchPlayer();
+          return currentPlayer();
+        }
+      }
+    });
+
+    $('#gameboard').on('click', '.tail', function() {
+      if (currentDomino != null) {
+        var x = game.playTail(currentDomino);
+        debugger
+        if (x) {
+          makeTrain();
+          makeHand(game.currentPlayer);
+          debugger
+          //write game over function
+          game.switchPlayer();
+          return currentPlayer();
+        }
       }
     });
 
@@ -122,30 +156,11 @@ var makeTrain = function() {
     dom.attr('bone', index);
     train.append(dom);
   })
-  console.log("---------------------");
-  console.log("Current head and tail");
-  console.log("Head: ", $(".head"));
-  console.log("Tail: ", $(".tail"));
-  console.log("---------------------");
   $('#gameboard').append(train);
   $(".head").removeClass("head");
   $(".tail").removeClass("tail");
-  
-  console.log("---------------------");
-  console.log("New head and tail");
-  console.log("Head: ", $(".train .northSuite").first());
-  console.log("Tail: ", $(".train .southSuite").last());
-  console.log("---------------------");
-
   $(".train .northSuite").first().addClass("head");
   $(".train .southSuite").last().addClass("tail");
-
-  console.log("---------------------");
-  console.log("New head and tail after 'class'-ification");
-  console.log("Head: ", $(".train .northSuite").first());
-  console.log("Tail: ", $(".train .southSuite").last());
-  console.log("---------------------");
-
 };
 
 
