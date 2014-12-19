@@ -128,6 +128,22 @@ describe("Game", function() {
 
 	});
 
+	describe("#getPlayerHand", function() {
+
+		it("should return a player's hand given an index", function() {
+			expect(game.getPlayerHand(2)).toBe(game.hands[2].hand);
+		});
+
+	});
+
+	describe("#getPlayerName", function() {
+
+		it("should return the name of a player by player index", function() {
+			expect(game.getPlayerName(1)).toBe(game.hands[1].username);
+		});
+
+	});
+
 	describe("#numberOfPlayers", function() {
 
 		it("should return the number of players in a game", function() {

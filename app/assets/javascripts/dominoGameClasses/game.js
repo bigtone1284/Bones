@@ -75,6 +75,14 @@ Game.prototype.gameOver = function() {
 	return false;
 };
 
+Game.prototype.getPlayerHand = function(handsIndex) {
+	return this.hands[handsIndex].hand;
+}
+
+Game.prototype.getPlayerName = function(handsIndex) {
+	return this.hands[handsIndex].username;
+}
+
 Game.prototype.numberOfPlayers = function() {
 	return this.hands.length
 }
