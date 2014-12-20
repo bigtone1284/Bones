@@ -22,18 +22,20 @@ Game.prototype.dealBones = function(playerNames) {
 	}.bind(this)); 
 };
 
+
 Game.prototype.drawBone = function() {
-	if (!this.emptyBoneYard()) {
-		this.moves += 1;
-		return this.hands[this.currentPlayer]["hand"].addBone(this.boneyard);
-	} else {
+	if (this.emptyBoneYard()) {
 		return false;
+	} else {
+		this.moves += 1;
+		return this.getPlayerHand(this.currentPlayer).addBone(this.boneyard);
 	}
 };
 
 Game.prototype.emptyBoneYard = function() {
 	return this.boneyard.isEmpty();
 };
+
 
 Game.prototype.emptyHand = function() {
 	for (var i = 0; i < this.hands.length; i++) {
@@ -68,9 +70,11 @@ Game.prototype.fewestPips = function() {
 
 Game.prototype.gameOver = function() {
 	if (this.emptyHand()) {
-		return this.winner = this.currentPlayer;
-	} else if (this.passes === this.numberOfPlayers()) {
-		return this.winner = this.fewestPips();
+		this.winner = this.currentPlayer;
+		return alert(this.getPlayerName(this.winner) + " WON!")
+	} else if (this.passGameOver()) {
+		this.winner = this.fewestPips();
+		return alert(this.getPlayerName(this.winner) + " WON!")
 	}
 	return false;
 };
@@ -108,9 +112,9 @@ Game.prototype.playFirst = function(boneIndex) {
 };
 
 Game.prototype.playHead = function(boneIndex) {
-	if (this.train.playHead(this.hands[this.currentPlayer]["hand"].bones[boneIndex])) {
+	if (this.train.playHead(this.getPlayerHand(this.currentPlayer).peek(boneIndex))) {
 		this.moves += 1;
-		return this.hands[this.currentPlayer]["hand"].playBone(boneIndex);
+		return this.getPlayerHand(this.currentPlayer).playBone(boneIndex);
 	}
 	return false;	
 };
