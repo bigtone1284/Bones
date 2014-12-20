@@ -23,6 +23,16 @@
 	overflow: auto;
 }
 
+#gameboard.active {
+	background-color: orchid;
+	height: 500px;
+	width: 700px;
+	float: right;
+	text-align: center;
+	display: table-cell;
+	vertical-align: middle;
+}
+
 #hands {
 	float: left;
 }
@@ -33,12 +43,12 @@
 	margin: 0.1em;
 }
 
-.train {
-	float: left;
+.player.current { 
+	background-color: springgreen;
 }
 
-.domino .train {
-	display: inline-block;
+.train {
+	float: left;
 }
 
 .northSuite {
@@ -54,6 +64,19 @@
 	text-align: center;
 }
 
+.firstplay {
+  margin: 0 auto;
+	background-color: springgreen;
+	text-align: center;
+	font-size: 3em;
+	display: inline-block;
+}
+
+.train .domino {
+	display: inline-block;
+	background-color: snow;
+	margin: 0px;
+}
 
 
 
