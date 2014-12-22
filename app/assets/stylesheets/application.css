@@ -10,23 +10,29 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
+ /*
+ *= require jquery-ui
  *= require_tree .
  *= require_self
  */
 
+@font-face {
+  font-family: "Dice";
+  src: url(http://www.ambor.com/hb/dice.ttf) format("truetype");; 
+}
+
 .domino {
-	padding: .1em;
-	font-size: 2em;
 	margin: .1em;
-	border: solid 1px;
 	text-align: center;
 	overflow: auto;
+	font-family: "Dice";
+	font-size: 2.75em;
 }
 
 #gameboard.active {
 	background-color: orchid;
-	height: 500px;
-	width: 700px;
+	height: 400px;
+	width: 650px;
 	float: right;
 	text-align: center;
 	display: table-cell;
@@ -48,20 +54,23 @@
 }
 
 .train {
-	float: left;
+	padding-top: 4em;
 }
 
 .northSuite {
 	float: left;
-	padding: 0.1em;
 	text-align: center;
-	border-right: solid 1px;
+	margin-right: -0.06em;
+	margin-top: -0.04em;
+	margin-bottom: -0.04em;
 }
 
 .southSuite {
 	float: left;
-	padding: 0.1em;
 	text-align: center;
+	margin-left: -0.06em;
+	margin-top: -0.05em;
+	margin-bottom: -0.04em;
 }
 
 .firstplay {
@@ -75,9 +84,42 @@
 .train .domino {
 	display: inline-block;
 	background-color: snow;
-	margin: 0px;
+	font-size: 3em;
+	display: inline-block;
+	font-family: "Dice", sans-serif;
+	margin-top: .05em;
+	margin-bottom: .05em;
+	border-radius: 0.2em;
+	padding-top: -.05em;
+	padding-bottom: -.05em;
+	margin-left: -0.05em;
+	margin-right: -0.05em;
 }
 
+.header {
+	width: 5em;
+	height: 3em;
+	background-color: springgreen;
+	display: inline-block;
+	margin-right: 0.01em;
+	border-radius: 0.2em;
+}
 
+.tailer {
+	width: 5em;
+	height: 3em;
+	background-color: springgreen;
+	display: inline-block;
+	margin-left: 0.01em;
+	border-radius: 0.2em;
+}
+
+.domino.double {
+  -ms-transform: rotate(90deg); /* IE 9 */
+  -webkit-transform: rotate(90deg); /* Chrome, Safari, Opera */
+  transform: rotate(90deg);
+	margin-left: -0.45em;
+	margin-right:-0.45em;
+}
 
 

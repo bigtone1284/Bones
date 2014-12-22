@@ -56,4 +56,5 @@ gem 'ffaker'
 # Adding Awesome Print because why not.  
 gem 'awesome_print'
 
-
+# For awesome UI!
+gem 'jquery-ui-rails'

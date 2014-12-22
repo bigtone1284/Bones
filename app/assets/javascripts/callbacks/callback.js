@@ -6,14 +6,16 @@ var startGame = function() {
 	$('form').empty();
 	makeHands();
 	currentPlayerNotice();
-	$('#hands').on('click', '.player.current .domino', setCurrentDomino);
+	// $('#hands').on('click', '.player.current .domino', setCurrentDomino);
 	makeGameBoard();
 	makePass();
 	$('#container').on('click', '#boneyard', drawBone);
 	$('#container').on('click', '#pass', passTurn);
-	$('#gameboard').on('click', '.firstplay', firstPlay);
-	$('#gameboard').on('click', '.head', playHead);
-	$('#gameboard').on('click', '.tail', playTail);
+	$('#gameboard').on('drop', '.firstplay', firstPlay);
+	$('#gameboard').on('drop', '.header', playHead);
+	$('#gameboard').on('drop', '.tailer', playTail);
+	$('#hands').on('drag', '.player.current .domino', setCurrentDomino);
+
 }
 
 var currentPlayerNotice = function() {
@@ -22,11 +24,13 @@ var currentPlayerNotice = function() {
   $('#container').append(current);
   $('.current').removeClass('current');
   $('.player.' + game.currentPlayer).addClass('current');
+  $('.player.current .domino').draggable();
+
 };
 
 var makeGameBoard = function() {
 	$('#gameboard').addClass('active');
-	var firstPlay = $('<div>').addClass('firstplay').text('Play first Bone Here');
+	var firstPlay = $('<div>').addClass('firstplay').text('Play first Bone Here').droppable();
 	$('#gameboard').append(firstPlay);
 };
 
@@ -74,9 +78,14 @@ var makeTrain = function() {
     var southSuite = $('<div>').addClass('southSuite').text(bone.southSuite);
     dom.append(northSuite);
     dom.append(southSuite);
+    if (bone.northSuite === bone.southSuite) {
+    	dom.addClass('double')	
+    }
     dom.attr('bone', index);
     train.append(dom);
 	})
+	var header = $('<div>').addClass('header').prependTo(train).droppable();
+	var tailer = $('<div>').addClass('tailer').appendTo(train).droppable();
 };
 
 var makePass = function() {
