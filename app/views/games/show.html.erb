@@ -11,3 +11,5 @@
 <div id="container"></div>
 <div id="hands"></div>
 <div id="gameboard"></div>
+<%= content_tag :div, id: "gameUsers", data: { gameUsers: @game.users_info } do %>
+<% end %>

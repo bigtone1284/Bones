@@ -7,7 +7,9 @@ class GamesController < ApplicationController
 
 	def show
     @game = Game.find(params[:id])
-    @game.users.push(User.find(session[:current_user_id]))
+    if @game.users.length < 4 || !@game.users.include?(User.find(session[:current_user_id]))
+    	@game.users.push(User.find(session[:current_user_id]))
+    end
   end
 
   def new

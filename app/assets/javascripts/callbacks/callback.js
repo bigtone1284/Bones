@@ -1,21 +1,25 @@
 var startGame = function() {
-	var names = $('input').val().split(',');
+	var names = [];
+	var users = $('#gameUsers').data('gameusers');
+	for (var i = 0; i < users.length; i++) {
+		names.push(users[i].username);
+	}
 	currentDomino = null;
 	game = new Game(names);
 	game.whoGoesFirst();
 	$('form').empty();
 	makeHands();
-	currentPlayerNotice();
 	// $('#hands').on('click', '.player.current .domino', setCurrentDomino);
 	makeGameBoard();
 	makePass();
+	currentPlayerNotice();
 	$('#container').on('click', '#boneyard', drawBone);
 	$('#container').on('click', '#pass', passTurn);
 	$('#gameboard').on('drop', '.firstplay', firstPlay);
 	$('#gameboard').on('drop', '.header', playHead);
 	$('#gameboard').on('drop', '.tailer', playTail);
 	$('#hands').on('drag', '.player.current .domino', setCurrentDomino);
-
+	
 }
 
 var currentPlayerNotice = function() {
@@ -35,7 +39,9 @@ var makeGameBoard = function() {
 };
 
 var makeHand = function(handIndex) {
-  var hand = $('<div>').addClass("player " + handIndex).text(game.getPlayerName(handIndex));
+  var hand = $('<div>').addClass("player " + handIndex)
+  										 .attr('data', game.getPlayerName(handIndex))
+  										 .text(game.getPlayerName(handIndex));
   game.getPlayerHand(handIndex).bones.forEach(function(bone, index) {
     var dom = $('<div>').addClass('domino');
     var northSuite = $('<div>').addClass('northSuite').text(bone.northSuite);
@@ -46,6 +52,9 @@ var makeHand = function(handIndex) {
     hand.append(dom);
   });
   $('#hands').append(hand);
+  if (hand.attr('data') !== $('#userLink').text()) {
+  	hand.hide();
+  }
 }
 
 var remakeHand = function(handIndex) {
