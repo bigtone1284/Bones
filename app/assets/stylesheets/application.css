@@ -122,4 +122,16 @@
 	margin-right:-0.45em;
 }
 
+#content {
+	height: 100%;
+	width: 100%;
+	overflow: auto;
+	position: relative;
+}
+
+footer {
+	text-align: center;
+	width: 100%;
+	position: absolute;
+}
 

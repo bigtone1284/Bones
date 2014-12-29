@@ -1,0 +1,13 @@
+<form id="playerForm">
+
+	<% if (@game.users.length < 2) %>
+		<%= "Waiting for more players..." %>
+	<% else %>
+		<button id="start">Dominoes!!!!</button>
+	<% end %>
+
+</form>
+
+<div id="container"></div>
+<div id="hands"></div>
+<div id="gameboard"></div>

@@ -22,9 +22,14 @@
 //= dominoGameClasses/train.js
 //= dominoGameClasses/game.js
 //= callbacks/callback.js
+//= modals.js
+//= header.js
+
 $(function() {
   console.log("Loaded, bro.")
   var game;
   var currentDomino;
   $('#start').on('click', startGame)
 });
+
+

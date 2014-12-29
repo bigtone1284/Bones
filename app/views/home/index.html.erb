@@ -1,15 +1,8 @@
-<h1>Bones.</h1>
-
-<form id="playerForm">
-
-	Players:<br>
-	<input class='name' type="text" name="player">
-	<br>
-
-	<button id="start">Dominoes!!!!</button>
-
-</form>
-
-<div id="container"></div>
-<div id="hands"></div>
-<div id="gameboard"></div>
+<% if session[:current_user_id] %>
+	<div class="gamesTable">Join a Game!<br>
+	  <% @games.each do |game| %>
+	  	<div class="gameItem"><%= link_to "Game " + game.id.to_s, game %></div>
+	  <% end %>
+	</div>
+	<div><%= button_to "Create a New Game", 'games#create' %></div>
+<% end %>
