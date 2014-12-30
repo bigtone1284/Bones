@@ -18,7 +18,7 @@
 
 @font-face {
   font-family: "Dice";
-  src: url(http://www.ambor.com/hb/dice.ttf) format("truetype");; 
+  src: url('/vendor/assets/font/dice(1).ttf') format("truetype");; 
 }
 
 .domino {
