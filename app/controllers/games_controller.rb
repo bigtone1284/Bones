@@ -10,6 +10,10 @@ class GamesController < ApplicationController
     if @game.users.length < 4 && !@game.users.include?(User.find(session[:current_user_id]))
     	@game.users.push(User.find(session[:current_user_id]))
     end
+    respond_to do |format|
+      format.html {render :show}
+      format.json {render json: @game}
+    end
   end
 
   def new
@@ -17,7 +21,6 @@ class GamesController < ApplicationController
   end
 
   def create
-
     @game = Game.create() 
     redirect_to @game
   end
@@ -35,7 +38,7 @@ class GamesController < ApplicationController
   private
 
   def game_params
-  	params.require(:game).permit()
+  	params.require(:game).permit(:active, :finished, :winner, :moves, :train, :boneyard, :hand1, :hand2, :hand3, :hand4)
   end
 
 end

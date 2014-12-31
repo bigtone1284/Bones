@@ -3,6 +3,7 @@
 var startGame = function() {
 	var names = [];
 	var users = $('#gameUsers').data('gameusers');
+	var gameNum = $('#gameNum').data('gamenum');
 	for (var i = 0; i < users.length; i++) {
 		names.push(users[i].username);
 	}
@@ -21,6 +22,11 @@ var startGame = function() {
 	$('#gameboard').on('drop', '.header', playHead);
 	$('#gameboard').on('drop', '.tailer', playTail);
 	$('#hands').on('drag', '.player.current .domino', setCurrentDomino);
+	$.ajax({
+		url: '/games/' + gameNum,
+		type: 'PUT',
+		data: {active: true}
+	});
 }
 
 var currentPlayerNotice = function() {

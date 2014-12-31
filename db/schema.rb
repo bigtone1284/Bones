@@ -17,10 +17,16 @@ ActiveRecord::Schema.define(version: 20141212215659) do
   enable_extension "plpgsql"
 
   create_table "games", force: true do |t|
-    t.string   "type"
+    t.boolean  "active"
     t.boolean  "finished"
     t.string   "winner"
     t.integer  "moves"
+    t.string   "train"
+    t.string   "boneyard"
+    t.string   "hand1"
+    t.string   "hand2"
+    t.string   "hand3"
+    t.string   "hand4"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
