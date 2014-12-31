@@ -14,6 +14,7 @@
 //= require jquery-ui
 //= require jquery_ujs
 //= require turbolinks
+//= require jquery-readyselector
 //= require_tree .
 //= dominoGameClasses/bone.js
 //= dominoGameClasses/boneYard.js
@@ -29,7 +30,7 @@ $(function() {
   console.log("Loaded, bro.")
   var game;
   var currentDomino;
-  $('#start').on('click', startGame)
+  $('#start').on('click', startGame);
 });
 
 

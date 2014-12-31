@@ -1,3 +1,5 @@
+
+
 var startGame = function() {
 	var names = [];
 	var users = $('#gameUsers').data('gameusers');
@@ -19,7 +21,6 @@ var startGame = function() {
 	$('#gameboard').on('drop', '.header', playHead);
 	$('#gameboard').on('drop', '.tailer', playTail);
 	$('#hands').on('drag', '.player.current .domino', setCurrentDomino);
-	
 }
 
 var currentPlayerNotice = function() {
