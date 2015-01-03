@@ -18,7 +18,7 @@
 
 @font-face {
   font-family: "Dice";
-  src: font-url('dice.ttf') format("truetype");
+  src: asset-url('dice.ttf') format("truetype");
   font-weight: normal;
   font-style: normal;
 }
