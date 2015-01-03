@@ -6,6 +6,12 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+# Enable the asset pipeline
+config.assets.enabled = true
+config.assets.paths << "#{Rails.root}/vendor/assets/fonts"
+# Precompile additional assets
+config.assets.precompile += %w( .svg .eot .woff .ttf )
+
 module Bones
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.
