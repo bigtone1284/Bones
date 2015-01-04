@@ -8,6 +8,7 @@ Bundler.require(*Rails.groups)
 
 module Bones
   class Application < Rails::Application
+    config.assets.enabled = true
     # Add the fonts path
     config.assets.paths << "#{Rails.root}/app/assets/fonts"
 
