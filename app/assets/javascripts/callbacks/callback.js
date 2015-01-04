@@ -51,8 +51,8 @@ var makeHand = function(handIndex) {
   										 .text(game.getPlayerName(handIndex));
   game.getPlayerHand(handIndex).bones.forEach(function(bone, index) {
     var dom = $('<div>').addClass('domino');
-    var northSuite = $('<div>').addClass('northSuite').text(bone.northSuite);
-    var southSuite = $('<div>').addClass('southSuite').text(bone.southSuite);
+    var northSuite = $('<div>').addClass('northSuite').addClass('d' + bone.northSuite.toString()).text(bone.northSuite);
+    var southSuite = $('<div>').addClass('southSuite').addClass('d' + bone.southSuite.toString()).text(bone.southSuite);
     dom.append(northSuite);
     dom.append(southSuite);
     dom.attr('bone', index);
