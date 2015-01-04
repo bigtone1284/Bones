@@ -35,7 +35,7 @@
 	margin: .1em;
 	text-align: center;
 	overflow: auto;
-	font-family: "dicemedium";
+	font-family: 'dicemedium';
 	font-size: 2.75em;
 }
 
@@ -96,7 +96,7 @@
 	background-color: snow;
 	font-size: 3em;
 	display: inline-block;
-	font-family: "Dice", sans-serif;
+	font-family: 'dicemedium';
 	margin-top: .05em;
 	margin-bottom: .05em;
 	border-radius: 0.2em;
