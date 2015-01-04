@@ -20,12 +20,12 @@
 
 @font-face {
     font-family: 'dicemedium';
-    src: url('/fonts/dice.eot');
-    src: url('/fonts/dice.eot?#iefix') format('embedded-opentype'),
-         url('/fonts/dice.woff2') format('woff2'),
-         url('/fonts/dice.woff') format('woff'),
-         url('/fonts/dice.ttf') format('truetype'),
-         url('/fonts/dice.svg#dicemedium') format('svg');
+    src: url('fonts/dice.eot');
+    src: url('fonts/dice.eot?#iefix') format('embedded-opentype'),
+         url('fonts/dice.woff2') format('woff2'),
+         url('fonts/dice.woff') format('woff'),
+         url('fonts/dice.ttf') format('truetype'),
+         url('fonts/dice.svg#dicemedium') format('svg');
     font-weight: normal;
     font-style: normal;
 
