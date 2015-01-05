@@ -55,4 +55,28 @@ describe("BoneYard", function() {
 
   });
 
+  describe("#asString", function() {
+
+    it("should return a string of the bones inside", function() {
+      boneyard.bones = [new Bone(6,4), new Bone(5,2)];
+      expect(boneyard.asString()).toBe("6452");
+    })
+
+  })
+
+  describe("#fromString", function() {
+
+    it("should remake the boneyard", function() {
+      var bone1 = new Bone(1,0);
+      var bone2 = new Bone(5,1);
+      var bone3 = new Bone(4,2);
+      boneyard.bones = [bone1, bone2, bone3];
+      boneyard.fromString("1433");
+      expect(boneyard.bones[0].northSuite).toBe(1);
+      expect(boneyard.bones[0].southSuite).toBe(4);
+      expect(boneyard.bones[1].northSuite).toBe(3);
+      expect(boneyard.bones[1].southSuite).toBe(3);
+    })
+  })
+
 });

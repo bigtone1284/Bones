@@ -123,4 +123,25 @@ describe("Train", function() {
 
   });
 
+  describe("#asString", function() {
+    it("should return the train as a string", function() {
+      train.gameTrain = [new Bone(1,2), new Bone(3,5)];
+      expect(train.asString()).toBe("1235");
+    })
+  })
+
+  describe("#fromString", function() {
+    it("should remake the train from a string", function() {
+      var bone1 = new Bone(1,0);
+      var bone2 = new Bone(5,1);
+      var bone3 = new Bone(4,2);
+      train.gameTrain = [bone1, bone2, bone3];
+      train.fromString("1445");
+      expect(train.gameTrain[0].northSuite).toBe(1);
+      expect(train.gameTrain[0].southSuite).toBe(4);
+      expect(train.gameTrain[1].northSuite).toBe(4);
+      expect(train.gameTrain[1].southSuite).toBe(5);
+    }) 
+  })
+
 });

@@ -162,4 +162,33 @@ describe("Hand", function() {
 
   });
 
+  describe("#asString", function() {
+    
+    it("should return the hand as a string", function() {
+      var bone1 = new Bone(1,0);
+      var bone2 = new Bone(5,1);
+      var bone3 = new Bone(4,2);
+      hand.bones = [bone1, bone2, bone3];
+      expect(hand.asString()).toBe("105142");
+
+    });
+  });
+
+  describe("#fromString", function() {
+
+    it("should remake the hand from a string", function() {
+
+      var bone1 = new Bone(1,0);
+      var bone2 = new Bone(5,1);
+      var bone3 = new Bone(4,2);
+      hand.bones = [bone1, bone2, bone3];
+      hand.fromString("1433");
+      expect(hand.bones[0].northSuite).toBe(1);
+      expect(hand.bones[0].southSuite).toBe(4);
+      expect(hand.bones[1].northSuite).toBe(3);
+      expect(hand.bones[1].southSuite).toBe(3);
+    })
+
+  })
+
 });

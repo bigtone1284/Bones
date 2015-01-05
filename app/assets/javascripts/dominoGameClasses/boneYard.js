@@ -19,3 +19,22 @@ BoneYard.prototype.getRandomBone = function() {
 BoneYard.prototype.isEmpty = function() {
 	return this.bones.length === 0;
 };
+
+BoneYard.prototype.asString = function() {
+	var boneYardString = "";
+	for (var i = 0; i < this.bones.length; i++) {
+		boneYardString += this.bones[i].asString();
+	}
+	return boneYardString;
+};
+
+BoneYard.prototype.fromString = function(boneYardString) {
+	this.bones = [];
+	var boneYardArray = boneYardString.match(/.{1,2}/g);
+	for (var i = 0; i < boneYardArray.length; i++) {
+		var bone = new Bone;
+		bone.fromString(boneYardArray[i]);
+		this.bones.push(bone);
+	}
+};
+
