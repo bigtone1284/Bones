@@ -19,3 +19,12 @@ Bone.prototype.reOrient = function() {
 Bone.prototype.totalPips = function() {
 	return this.northSuite + this.southSuite;
 };
+
+Bone.prototype.asString = function() {
+	return this.northSuite.toString() + this.southSuite.toString();
+};
+
+Bone.prototype.fromString = function(numString) {
+	this.northSuite = Number(numString[0]);
+	this.southSuite = Number(numString[1]);
+}

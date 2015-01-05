@@ -30,6 +30,7 @@ $(function() {
   console.log("Loaded, bro.")
   var game;
   var currentDomino;
+  var gameNum;
   $('#start').on('click', startGame);
 });
 

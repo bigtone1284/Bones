@@ -71,6 +71,24 @@ Hand.prototype.totalPips = function() {
 	return value;
 };
 
+Hand.prototype.asString = function() {
+	var handString = "";
+	for (var i = 0; i < this.bones.length; i++) {
+		handString += this.bones[i].asString();
+	}
+	return handString;
+}
+
+Hand.prototype.fromString = function(handString) {
+	this.bones = [];
+	var handArray = handString.match(/.{1,2}/g);
+	for (var i = 0; i < handArray.length; i++) {
+		var bone = new Bone;
+		bone.fromString(handArray[i]);
+		this.bones.push(bone);
+	}
+}
+
 
 
 

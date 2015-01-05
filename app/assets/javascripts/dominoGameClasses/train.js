@@ -51,7 +51,23 @@ Train.prototype.tail = function() {
 	return this.gameTrain[this.gameTrain.length - 1].southSuite;
 };
 
+Train.prototype.asString = function() {
+	var trainString = "";
+	for (var i = 0; i < this.gameTrain.length; i++) {
+		trainString += this.gameTrain[i].asString();
+	}
+	return trainString;
+};
 
+Train.prototype.fromString = function(trainString) {
+	this.gameTrain = [];
+	var trainArray = trainString.match(/.{1,2}/g);
+	for (var i = 0; i < trainArray.length; i++) {
+		var bone = new Bone;
+		bone.fromString(trainArray[i]);
+		this.gameTrain.push(bone);
+	}
+}
 
 
 

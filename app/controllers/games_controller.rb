@@ -31,8 +31,15 @@ class GamesController < ApplicationController
 
   def update
     @game = Game.find(params[:id])
-    @game.update(game_params)  
-    render 
+    respond_to do |format|
+      if @game.update(game_params)
+        format.html { redirect_to game_path(@game) }
+        format.json { render json: @game }
+      else
+        format.html { render :edit }
+        format.json { render json: @game.errors, status: 422 }
+      end
+    end
   end
 
   private

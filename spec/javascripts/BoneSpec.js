@@ -68,5 +68,24 @@ describe("Bone", function() {
     });
 
   });
+
+  describe("asString", function() {
+
+    it("should return the bone in the form of a string", function() {
+      expect(bone.asString()).toBe("64");
+    })
+
+  })
+
+  describe("fromString", function() {
+
+    it("should return a bone from a two number string", function() {
+      bone = new Bone(0,1);
+      bone.fromString("25");
+      expect(bone.northSuite).toBe(2);
+      expect(bone.southSuite).toBe(5);
+    })
+
+  })
   
 });
