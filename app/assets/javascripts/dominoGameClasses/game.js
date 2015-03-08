@@ -1,4 +1,4 @@
-function Game(playerArray) {
+var Game = function(playerArray) {
 	this.boneyard = new BoneYard;
 	this.train = new Train;
 	this.hands = [];
@@ -25,10 +25,11 @@ Game.prototype.dealBones = function(playerNames) {
 
 Game.prototype.drawBone = function() {
 	if (this.emptyBoneYard()) {
-		return false;
+		return -1;
 	} else {
 		this.moves += 1;
-		return this.getPlayerHand(this.currentPlayer).addBone(this.boneyard);
+		return this.getPlayerHand(this.currentPlayer)
+							 .addBone(this.boneyard);
 	}
 };
 
@@ -44,7 +45,7 @@ Game.prototype.emptyHand = function() {
 			return i;
 		}
 	}
-	return false;
+	return -1;
 };
 
 Game.prototype.fewestPips = function() {

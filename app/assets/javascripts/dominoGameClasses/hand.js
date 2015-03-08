@@ -1,4 +1,4 @@
-function Hand() {
+var Hand = function() {
 	this.bones = [];
 }
 
@@ -14,7 +14,7 @@ Hand.prototype.hasBone = function(bone) {
 Hand.prototype.hasDoubles = function() {
 	var doubles = false;
 	this.bones.forEach(function(bone){
-		if (bone.double()) {doubles = true}
+		if (bone.isDouble()) {doubles = true}
 	})
 	return doubles;
 };
@@ -23,7 +23,7 @@ Hand.prototype.heaviestBone = function() {
 	var heaviest = new Bone(-1, 0);
 	if (this.hasDoubles()) {
 		for (var i = 0; i < this.bones.length; i++) {
-			if (this.bones[i].double()) {
+			if (this.bones[i].isDouble()) {
 				if (this.bones[i].largestSuite() >= heaviest.largestSuite()) {
 					heaviest = this.bones[i];
 				}
@@ -88,10 +88,3 @@ Hand.prototype.fromString = function(handString) {
 		this.bones.push(bone);
 	}
 }
-
-
-
-
-
-
-

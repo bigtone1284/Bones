@@ -1,9 +1,9 @@
-function Bone(n,s) {
+var Bone = function(n,s) {
 	this.northSuite = n;
 	this.southSuite = s;
 }
 
-Bone.prototype.double = function() {
+Bone.prototype.isDouble = function() {
 	return this.northSuite === this.southSuite;
 };
 

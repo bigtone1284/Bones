@@ -1,4 +1,4 @@
-function BoneYard() {
+var BoneYard = function() {
 	this.bones = [];
 	this.fillBoneYard();
 }
@@ -37,4 +37,3 @@ BoneYard.prototype.fromString = function(boneYardString) {
 		this.bones.push(bone);
 	}
 };
-
