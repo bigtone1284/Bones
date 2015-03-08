@@ -1,4 +1,4 @@
-function Train() {
+var Train = function() {
 	this.gameTrain = [];
 }
 
@@ -68,10 +68,3 @@ Train.prototype.fromString = function(trainString) {
 		this.gameTrain.push(bone);
 	}
 }
-
-
-
-
-
-
-

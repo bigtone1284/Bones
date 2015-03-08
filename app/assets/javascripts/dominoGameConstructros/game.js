@@ -1,25 +1,21 @@
-var Game = function(playerArray) {
-	this.boneyard = new BoneYard;
-	this.train = new Train;
+var Game = function(numberOfPlayers) {
+	this.boneyard = new BoneYard();
+	this.train = new Train();
 	this.hands = [];
 	this.moves = 0;
 	this.active = true;
 	this.currentPlayer = null;
 	this.passes = 0;
-	this.dealBones(playerArray);
+	this.dealBones(numberOfPlayers);
 	this.winner = null;
 }
 
-Game.prototype.dealBones = function(playerNames) {
-	playerNames.forEach(function(player) {
-		var playerHand = new Hand;
+Game.prototype.dealBones = function(players) {
+	for (var i = 0; i < players; i++) {
+		var playerHand = new Hand();
 		playerHand.setHand(this.boneyard, 7);
-		var playerHandObject = {
-			username: player,
-			hand: playerHand
-		};
-		this.hands.push(playerHandObject)
-	}.bind(this)); 
+		this.hands.push(playerHand);
+	} 
 };
 
 
@@ -51,13 +47,13 @@ Game.prototype.emptyHand = function() {
 Game.prototype.fewestPips = function() {
 	var pips = 999999;
 	var playerIndex = -1;
-	this.hands.forEach(function(player, index) {
-		if (player.hand.totalPips() < pips) {
-			pips = player.hand.totalPips();
+	this.hands.forEach(function(hand, index) {
+		if (hand.totalPips() < pips) {
+			pips = hand.totalPips();
 			playerIndex = index;
-		} else if (player.hand.totalPips() === pips) {
-			var testHand = new Hand;
-			var heavyBoneOne = player.hand.heaviestBone();
+		} else if (hand.totalPips() === pips) {
+			var testHand = new Hand();
+			var heavyBoneOne = hand.heaviestBone();
 			var heavyBoneTwo = this.getPlayerHand(playerIndex).heaviestBone();
 			testHand.bones = [heavyBoneOne, heavyBoneTwo];
 			var heavy = testHand.heaviestBone();
@@ -71,22 +67,17 @@ Game.prototype.fewestPips = function() {
 
 Game.prototype.gameOver = function() {
 	if (this.emptyHand()) {
-		debugger
 		this.winner = this.currentPlayer;
-		return alert(this.getPlayerName(this.winner) + " WON!")
+		return alert(this.winner + " WON!")
 	} else if (this.passGameOver()) {
 		this.winner = this.fewestPips();
-		return alert(this.getPlayerName(this.winner) + " WON!")
+		return alert(this.winner + " WON!")
 	}
 	return false;
 };
 
 Game.prototype.getPlayerHand = function(handsIndex) {
-	return this.hands[handsIndex].hand;
-}
-
-Game.prototype.getPlayerName = function(handsIndex) {
-	return this.hands[handsIndex].username;
+	return this.hands[handsIndex];
 }
 
 Game.prototype.numberOfPlayers = function() {
@@ -142,7 +133,7 @@ Game.prototype.switchPlayer = function() {
 };
 
 Game.prototype.whoGoesFirst = function() {
-	var heaviestBones = new Hand;
+	var heaviestBones = new Hand();
 	this.hands.forEach(function(player, index) {
 		heaviestBones.bones.push(player.hand.heaviestBone());
 	});

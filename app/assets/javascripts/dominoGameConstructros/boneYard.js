@@ -32,7 +32,7 @@ BoneYard.prototype.fromString = function(boneYardString) {
 	this.bones = [];
 	var boneYardArray = boneYardString.match(/.{1,2}/g);
 	for (var i = 0; i < boneYardArray.length; i++) {
-		var bone = new Bone;
+		var bone = new Bone();
 		bone.fromString(boneYardArray[i]);
 		this.bones.push(bone);
 	}

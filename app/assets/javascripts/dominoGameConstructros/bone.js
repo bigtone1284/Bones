@@ -25,6 +25,6 @@ Bone.prototype.asString = function() {
 };
 
 Bone.prototype.fromString = function(numString) {
-	this.northSuite = Number(numString[0]);
-	this.southSuite = Number(numString[1]);
+	this.northSuite = parseInt(numString[0]);
+	this.southSuite = parseInt(numString[1]);
 }
