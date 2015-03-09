@@ -66,12 +66,12 @@ Game.prototype.fewestPips = function() {
 };
 
 Game.prototype.gameOver = function() {
-	if (this.emptyHand()) {
+	if (this.emptyHand() > -1) {
 		this.winner = this.currentPlayer;
-		return alert(this.winner + " WON!")
+		return true;
 	} else if (this.passGameOver()) {
 		this.winner = this.fewestPips();
-		return alert(this.winner + " WON!")
+		return true;
 	}
 	return false;
 };
@@ -86,7 +86,7 @@ Game.prototype.numberOfPlayers = function() {
 
 
 Game.prototype.passGameOver = function() {
-	if (this.passes === this.hands.length) {
+	if (this.passes >= this.numberOfPlayers()) {
 		this.active = false;
 		return true;
 	}
@@ -135,7 +135,7 @@ Game.prototype.switchPlayer = function() {
 Game.prototype.whoGoesFirst = function() {
 	var heaviestBones = new Hand();
 	this.hands.forEach(function(player, index) {
-		heaviestBones.bones.push(player.hand.heaviestBone());
+		heaviestBones.bones.push(player.heaviestBone());
 	});
 	var heavy = heaviestBones.heaviestBone();
 	return this.currentPlayer = heaviestBones.bones.indexOf(heavy);
